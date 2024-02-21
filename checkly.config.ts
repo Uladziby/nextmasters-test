@@ -3,9 +3,9 @@ import { defineConfig } from 'checkly'
 import { Frequency } from 'checkly/constructs'
 
 export default defineConfig({
- projectName: 'Website Monitoring',
+ projectName: 'nextmasters-test',
  logicalId: 'website-monitoring-1',
- repoUrl: 'https://github.com/acme/website',
+ repoUrl: 'https://nextmasters-test.vercel.app/',
  checks: {
    activated: true,
    muted: false,
