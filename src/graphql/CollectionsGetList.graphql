@@ -1,0 +1,10 @@
+query CollectionsGetList {
+	collections {
+		data {
+			description
+			id
+			name
+			slug
+		}
+	}
+}

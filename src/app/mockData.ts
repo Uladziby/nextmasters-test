@@ -1,16 +1,17 @@
 //import product1 from "/public/product_1.jpg";
 import { type ProductItemType } from "@/ui/types";
 
-export const products  : ProductItemType[] = [
+export const products: ProductItemType[] = [
 	{
 		id: "1",
 		name: "Product 1",
 		category: "Category 1",
 		price: 1700,
 		coverImage: {
-			src:'/product_1.jpg',
+			src: "/product_1.jpg",
 			alt: "Product 1",
 		},
+		description: "This is a description of product 4",
 	},
 	{
 		id: "2",
@@ -21,6 +22,7 @@ export const products  : ProductItemType[] = [
 			src: "/product_2.jpg",
 			alt: "Product 2",
 		},
+		description: "This is a description of product 4",
 	},
 	{
 		id: "3",
@@ -31,6 +33,7 @@ export const products  : ProductItemType[] = [
 			src: "/product_3.jpg",
 			alt: "Product 3",
 		},
+		description: "This is a description of product 4",
 	},
 	{
 		id: "4",
@@ -41,5 +44,6 @@ export const products  : ProductItemType[] = [
 			src: "/product_1.jpg",
 			alt: "Product 4",
 		},
-	}
-]
+		description: "This is a description of product 4",
+	},
+];

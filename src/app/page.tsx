@@ -1,12 +1,9 @@
-import { products } from "@/app/mockData";
-import { ProductList } from "@/ui/organisms/ProductList/ProductList";
-
+import { SuggestedProductList } from "@/ui/organisms/SuggestedProductsList/SuggestedProductList";
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center p-24">
-			<h1 className="text-blue-500">Products</h1>
-			<ProductList products={products} />
+		<main className="flex flex-col items-center justify-center p-24">
+			<SuggestedProductList />
 		</main>
 	);
 }

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/ui/organisms/Header/Header";
 import { Footer } from "@/ui/organisms/Footer/Footer";
+import { firaSans } from "@/utils/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +18,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<Header />
-				{children}
-				<Footer />
+		<html lang="en" className={`${firaSans.variable} h-full`}>
+			<body className={`${inter.className} h-full`}>
+				<div className="flex min-h-full w-full flex-col">
+					<Header />
+					<main className="flex-grow">{children}</main>
+					<Footer />
+				</div>
 			</body>
 		</html>
 	);

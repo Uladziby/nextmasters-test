@@ -1,8 +1,6 @@
+import { type ProductListItemFragment } from "@/gql/graphql";
+
 export type ProductDescriptionProps = {
-    product: {
-        name: string;
-        price: number;
-        category: string;
-    }
-    dataTestId?: string;
+	product: ProductListItemFragment;
+	dataTestId?: string;
 };
