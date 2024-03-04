@@ -20,6 +20,7 @@ export async function NavBar() {
 									href={link.href}
 									className={`text-blue-400 hover:text-blue-600`}
 									activeClassName="underline"
+									typeAriaCurrent="page"
 								>
 									{link.title}
 								</ActiveLink>
