@@ -1,30 +1,13 @@
-import { ActiveLink } from "@/ui/atoms/ActiveLink/ActiveLink";
+import { AutoCompleteInput } from "@/ui/atoms/AutoCompleteInput/AutoCompleteInput";
+import { NavBar } from "@/ui/organisms/NavBar/NavBar";
 
 export const Header = () => {
 	return (
-		<header className="flex h-16 min-h-10 items-center justify-between bg-gray-900 p-4 text-white">
-			<nav className="w-full">
-				<ul className="m-2 flex w-full justify-center">
-					<li className="px-2">
-						<ActiveLink
-							href="/"
-							className={`text-blue-400 hover:text-blue-600`}
-							activeClassName={"underline"}
-						>
-							Home
-						</ActiveLink>
-					</li>
-					<li>
-						<ActiveLink
-							href="/products/1"
-							className={`text-blue-400 hover:text-blue-600`}
-							activeClassName="underline"
-						>
-							Products
-						</ActiveLink>
-					</li>
-				</ul>
-			</nav>
+		<header className="sticky top-2 mt-2 flex h-16 min-h-10 items-center justify-between bg-transparent p-2 text-white">
+			<div className="mx-auto flex w-9/12 max-w-screen-xl justify-evenly rounded-xl bg-white p-4  lg:px-8 lg:py-4">
+				<NavBar />
+				<AutoCompleteInput />
+			</div>
 		</header>
 	);
 };

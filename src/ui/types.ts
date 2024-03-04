@@ -1,13 +1,13 @@
 export type ProductItemType = {
 	id: string;
 	category: string;
-	price: number;
 	name: string;
-	coverImage: {
+	price: number;
+	description: string;
+	coverImage?: {
 		src: string;
 		alt: string;
 	};
-	description: string;
 };
 
 export type ProductResponseItem = {
@@ -24,7 +24,14 @@ export type ProductResponseItem = {
 		count: number;
 	};
 	coverImage: {
-		src: string;
+		url: string;
 		alt: string;
 	};
+};
+
+export type CollectionsResponse = {
+	id: string;
+	name: string;
+	slug: string;
+	products: ProductResponseItem[];
 };

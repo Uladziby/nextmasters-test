@@ -1,0 +1,9 @@
+query CollectionProducts($slug: String, $id: ID!) {
+	collection(slug: $slug, id: $id) {
+		id
+		name
+		products {
+			...ProductListItem
+		}
+	}
+}

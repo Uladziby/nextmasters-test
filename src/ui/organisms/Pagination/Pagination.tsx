@@ -20,7 +20,7 @@ export const Pagination = ({
 	const pageNumbers = Array.from({ length: pages }, (_, i) => i + 1);
 
 	return (
-		<div className="flex items-center justify-center bg-transparent px-4 sm:px-6">
+		<div className="flex flex-none items-center justify-center bg-transparent px-4 sm:px-6">
 			<nav
 				className="isolate inline-flex -space-x-px rounded-md shadow-sm"
 				aria-label="pagination"

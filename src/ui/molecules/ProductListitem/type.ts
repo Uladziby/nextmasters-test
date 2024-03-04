@@ -1,12 +1,3 @@
-export type ProductListItemProps = {
-	product: {
-		id: string;
-		category: string;
-		price: number;
-		name: string;
-		coverImage: {
-			src: string;
-			alt: string;
-		};
-	};
-};
+import { type ProductListItemFragment } from "@/gql/graphql";
+
+export type ProductListItemProps = ProductListItemFragment;

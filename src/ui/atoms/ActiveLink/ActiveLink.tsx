@@ -13,7 +13,7 @@ export const ActiveLink = ({
 }: ActiveLinkProps) => {
 	const currentPathname = usePathname();
 
-	const isActive = currentPathname === href;
+	const isActive = currentPathname.split("/")[1] === href.split("/")[1];
 
 	return (
 		<Link
