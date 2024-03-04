@@ -1,35 +1,36 @@
-import { type Metadata } from "next";
 import { Suspense } from "react";
-import { getProductById } from "@/api/products";
+import { getProductByIdGraphql } from "@/api/products";
 import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem";
 import { SuggestedProductList } from "@/ui/organisms/SuggestedProductsList/SuggestedProductList";
 
 export const generateMetadata = async ({
 	params,
 }: {
-	params: { productId: string };
-}): Promise<Metadata> => {
-	const product = await getProductById(params.productId);
-	return {
-		title: `${product.name} - Shop online`,
-		description: product.description,
-		openGraph: {
+	params: { productId: string; productSlug: string };
+}) => {
+	const product = await getProductByIdGraphql(params.productId);
+
+	if (product)
+		return {
 			title: `${product.name} - Shop online`,
 			description: product.description,
-			images: [
-				{
-					url: product.coverImage.src,
-				},
-			],
-		},
-	};
+			openGraph: {
+				title: `${product.name} - Shop online`,
+				description: product.description,
+				images: [
+					{
+						url: product.images[0]?.url,
+					},
+				],
+			},
+		};
 };
 
 export default async function SingleProductPage({
 	params,
 	searchParams,
 }: {
-	params: { productId: string };
+	params: { productId: string; productSlug: string };
 	searchParams: { [key: string]: string | string[] };
 }) {
 	let refferal: string | undefined;
@@ -38,13 +39,17 @@ export default async function SingleProductPage({
 		refferal = searchParams.referral.toString();
 	}
 
-	const product = await getProductById(params.productId);
+	const product = await getProductByIdGraphql(params.productId);
 
 	return (
 		<>
 			<article className="prose flex max-w-xs flex-col justify-center">
-				<h1>{product.name}</h1>
-				<ProductListItem product={product} />
+				{product && (
+					<>
+						<h1>{product.name}</h1>
+						<ProductListItem product={product} />
+					</>
+				)}
 				{refferal && <p>Refferal: {refferal}</p>}
 			</article>
 			<aside>

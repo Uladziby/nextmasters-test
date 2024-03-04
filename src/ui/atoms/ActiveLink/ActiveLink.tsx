@@ -10,16 +10,17 @@ export const ActiveLink = ({
 	children,
 	className,
 	activeClassName,
+	typeAriaCurrent = "true",
 }: ActiveLinkProps) => {
 	const currentPathname = usePathname();
-
-	const isActive = currentPathname === href;
+	console.log("currentPathname", currentPathname);
+	const isActive = currentPathname.split("/")[1] === href.split("/")[1];
 
 	return (
 		<Link
 			href={`${href}` as Route}
 			className={clsx(className, isActive && activeClassName)}
-			aria-current={isActive && "page"}
+			aria-current={typeAriaCurrent}
 		>
 			{children}
 		</Link>

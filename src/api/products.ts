@@ -1,3 +1,9 @@
+import { executeGraphql } from "@/api/executeGraphQL";
+import {
+	ProductGetByIdDocument,
+	type ProductListItemFragment,
+	ProdutctsGetListDocument,
+} from "@/gql/graphql";
 import { type ProductItemType, type ProductResponseItem } from "@/ui/types";
 import { URL_BASE } from "@/utils/constatnts";
 
@@ -7,28 +13,28 @@ export const getProductById = async (id: ProductResponseItem["id"]) => {
 	return productResponseItemToProductItemType(productResponse);
 };
 
-export const getProducts = async (numberItems: number, currentPage: number) => {
-	console.log(numberItems, currentPage);
-	const res = await fetch(
-		`${URL_BASE}/products?take=${numberItems}&offset=${numberItems * currentPage === 0 ? 1 : currentPage}`,
-	);
-	const productsResponse = (await res.json()) as ProductResponseItem[];
+export const getProductByIdGraphql = async (
+	productId: ProductListItemFragment["id"],
+) => {
+	const response = await executeGraphql(ProductGetByIdDocument, {
+		id: productId,
+	});
 
-	const products = productsResponse.map(
-		(product): ProductItemType => ({
-			id: product.id,
-			name: product.title,
-			category: product.category,
-			price: product.price,
-			coverImage: {
-				src: product.image,
-				alt: product.title,
-			},
-			description: product.description,
-		}),
-	);
+	const product = response.product;
 
-	return products;
+	return product;
+};
+
+export const getProducts = async (
+	numberItems: number,
+	_skip: number,
+): Promise<ProductListItemFragment[]> => {
+	const graphqlResponse = await executeGraphql(ProdutctsGetListDocument, {
+		take: numberItems,
+		skip: _skip,
+	});
+
+	return graphqlResponse.products.data;
 };
 
 const productResponseItemToProductItemType = (
