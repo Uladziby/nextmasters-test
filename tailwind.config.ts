@@ -13,8 +13,15 @@ const config: Config = {
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			minHeight: {
+				"70vh": "70vh",
+			},
+			fontFamily: {
+				serif: ["var(--font-montserrat)"],
+			},
 		},
 	},
+
 	plugins: [require("@tailwindcss/typography")],
 };
 

@@ -6,7 +6,7 @@ export default function ProductsPageLayout({
 	children: ReactNode;
 }) {
 	return (
-		<div>
+		<div className="flex h-full w-full flex-col p-12">
 			<h1>CategoryProductLayout</h1>
 			{children}
 		</div>

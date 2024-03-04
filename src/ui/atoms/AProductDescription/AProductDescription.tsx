@@ -2,12 +2,12 @@ import { type ProductDescriptionProps } from "@/ui/atoms/AProductDescription/typ
 import { formatCurrency } from "@/utils/formatCurrency";
 
 export const AProductDescription = ({
-	product: { category, price, coverImage },
+	product: { price, name, categories}
 }: ProductDescriptionProps) => {
 	return (
 		<div className="flex flex-col">
-			<h2 className="text-l font-bold">{coverImage.alt}</h2>
-			<p>{category}</p>
+			<h2 className="text-l font-bold">{name}</h2>
+			<p>{categories[0]?.name}</p>
 			<span>{formatCurrency(price / 100)}</span>
 		</div>
 	);
