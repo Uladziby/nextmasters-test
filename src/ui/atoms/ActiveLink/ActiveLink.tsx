@@ -13,7 +13,7 @@ export const ActiveLink = ({
 	typeAriaCurrent = "true",
 }: ActiveLinkProps) => {
 	const currentPathname = usePathname();
-	console.log("currentPathname", currentPathname);
+
 	const isActive = currentPathname.split("/")[1] === href.split("/")[1];
 
 	return (
