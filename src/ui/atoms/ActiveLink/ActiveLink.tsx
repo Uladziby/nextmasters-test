@@ -10,7 +10,7 @@ export const ActiveLink = ({
 	children,
 	className,
 	activeClassName,
-	typeAriaCurrent = "true",
+	typeAriaCurrent = "false",
 }: ActiveLinkProps) => {
 	const currentPathname = usePathname();
 

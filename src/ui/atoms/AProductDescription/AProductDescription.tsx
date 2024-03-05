@@ -2,7 +2,7 @@ import { type ProductDescriptionProps } from "@/ui/atoms/AProductDescription/typ
 import { formatCurrency } from "@/utils/formatCurrency";
 
 export const AProductDescription = ({
-	product: { price, name, categories}
+	product: { price, name, categories },
 }: ProductDescriptionProps) => {
 	return (
 		<div className="flex flex-col">
