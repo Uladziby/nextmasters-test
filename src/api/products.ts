@@ -20,7 +20,7 @@ export const getProductByIdGraphql = async (
 		id: productId,
 	});
 
-	const product = response.product;
+	const product = response.product!;
 
 	return product;
 };
