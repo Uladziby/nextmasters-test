@@ -16,8 +16,12 @@ export const getProductById = async (id: ProductResponseItem["id"]) => {
 export const getProductByIdGraphql = async (
 	productId: ProductListItemFragment["id"],
 ) => {
-	const response = await executeGraphql(ProductGetByIdDocument, {
-		id: productId,
+	const response = await executeGraphql({
+		query: ProductGetByIdDocument,
+		variables: {
+			id: productId,
+		},
+		next: { tags: ["cart"] },
 	});
 
 	const product = response.product!;
@@ -29,9 +33,12 @@ export const getProducts = async (
 	numberItems: number,
 	_skip: number,
 ): Promise<ProductListItemFragment[]> => {
-	const graphqlResponse = await executeGraphql(ProdutctsGetListDocument, {
-		take: numberItems,
-		skip: _skip,
+	const graphqlResponse = await executeGraphql({
+		query: ProdutctsGetListDocument,
+		variables: {
+			take: numberItems,
+			skip: _skip,
+		},
 	});
 
 	return graphqlResponse.products.data;

@@ -26,10 +26,10 @@ const nextConfig = {
 	images: {
 		domains: ["static-ourstore.hyperfunctor.com", "source.unsplash.com"],
 		formats: ["image/webp"],
+		remotePatterns: [],
 	},
 	transpilePackages: ["lucide-react"],
 };
 
 //const withMDX = require("@next/mdx")();
-
 export default nextConfig;

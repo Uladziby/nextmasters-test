@@ -14,8 +14,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
+	modal,
 }: Readonly<{
 	children: React.ReactNode;
+	modal: React.ReactNode;
 }>) {
 	return (
 		<html lang="en" className={`${firaSans.variable} h-full`}>
@@ -25,6 +27,7 @@ export default function RootLayout({
 					<main className="flex-grow">{children}</main>
 					<Footer />
 				</div>
+				{modal}
 			</body>
 		</html>
 	);

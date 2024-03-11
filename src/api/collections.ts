@@ -6,7 +6,10 @@ import {
 } from "@/gql/graphql";
 
 export const getCollections = async (): Promise<CollectionsList[]> => {
-	const graphqlResponse = await executeGraphql(CollectionsGetListDocument, {});
+	const graphqlResponse = await executeGraphql({
+		query: CollectionsGetListDocument,
+		variables: {},
+	});
 
 	const collections = graphqlResponse.collections.data.map((p) => {
 		return {
@@ -21,8 +24,9 @@ export const getCollections = async (): Promise<CollectionsList[]> => {
 };
 
 export const getCollectionProducts = async (collectionSlug: string) => {
-	const graphqlResponse = await executeGraphql(CollectionProductsDocument, {
-		slug: collectionSlug,
+	const graphqlResponse = await executeGraphql({
+		query: CollectionProductsDocument,
+		variables: { slug: collectionSlug, id: "" },
 	});
 	return graphqlResponse.collection;
 };
