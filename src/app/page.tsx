@@ -3,9 +3,9 @@ import { SuggestedProductList } from "@/ui/organisms/SuggestedProductsList/Sugge
 
 export default function Home() {
 	return (
-		<main className="flex flex-col items-center justify-center p-24">
+		<section className="mx-auto w-full max-w-7xl p-8">
 			<CollectionsPage />
 			<SuggestedProductList />
-		</main>
+		</section>
 	);
 }

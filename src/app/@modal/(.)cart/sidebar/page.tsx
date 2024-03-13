@@ -9,11 +9,11 @@ export default async function CartModalPage() {
 	if (!cart?.items) return null;
 
 	const total = cart.items.reduce(
-		(acc, item) => acc + (item?.quantity ?? 0) * 1,
+		(acc, item) => acc + (item?.quantity ?? 0) * (item?.product?.price ?? 0),
 		0,
 	);
 
-	const totalPrice = formatCurrency(total);
+	const totalPrice = formatCurrency(total / 100);
 
 	return (
 		<>

@@ -32,7 +32,7 @@ export const CartSideBarList = ({
 								<h3>{item.product?.name}</h3>
 								{item.product?.price && (
 									<p className="small-caps ml-4">
-										{formatCurrency(item.product?.price)}
+										{formatCurrency(item.product?.price / 100)}
 									</p>
 								)}
 							</div>

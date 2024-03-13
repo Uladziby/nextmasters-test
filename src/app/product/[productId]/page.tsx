@@ -7,6 +7,8 @@ import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem"
 import { SuggestedProductList } from "@/ui/organisms/SuggestedProductsList/SuggestedProductList";
 import { addItemToCart, getOrCreateCart } from "@/api/cart";
 import { AddToCartButton } from "@/app/product/[productId]/AddToCartButton";
+import { ReviewForm } from "@/ui/organisms/ReviewForm/ReviewForm";
+import { CustomerReviews } from "@/ui/organisms/CustomerReviews/CustomerReviews";
 
 export const generateMetadata = async ({
 	params,
@@ -82,6 +84,10 @@ export default async function SingleProductPage({
 					<SuggestedProductList />
 				</Suspense>
 			</aside>
+			<section className="mx-auto max-w-2xl px-4 py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-8">
+				<ReviewForm productId={product.id} />
+				<CustomerReviews productId={product.id} />
+			</section>
 		</>
 	);
 }
