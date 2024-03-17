@@ -1,4 +1,4 @@
-query ProdutctsGetList($take: Int, $skip: Int! = 0) {
+query ProductsGetList($take: Int, $skip: Int! = 0) {
 	products(take: $take, skip: $skip) {
 		data {
 			...ProductListItem
@@ -6,6 +6,9 @@ query ProdutctsGetList($take: Int, $skip: Int! = 0) {
 				id
 				name
 			}
+		}
+		meta {
+			total
 		}
 	}
 }

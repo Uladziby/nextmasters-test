@@ -26,7 +26,7 @@ export const RemoveButton = ({
 	return (
 		<Button
 			type="submit"
-			className="hover:bg-slate-100"
+			className="bg-white hover:bg-slate-100"
 			onClick={handlerRemoveItem}
 			isDisabled={isPending}
 		>

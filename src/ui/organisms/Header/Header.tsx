@@ -1,8 +1,8 @@
-import { ShoppingCart, User } from "lucide-react";
+import { LogIn, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { AutoCompleteInput } from "@/ui/atoms/AutoCompleteInput/AutoCompleteInput";
 import { NavBar } from "@/ui/organisms/NavBar/NavBar";
-import { Button } from "@/ui/atoms/Button/Button";
 import { getCartByIdFromCookies } from "@/api/cart";
 
 export const Header = async () => {
@@ -13,19 +13,27 @@ export const Header = async () => {
 	);
 
 	return (
-		<header className="sticky top-2 mt-2 flex h-16 min-h-10 items-center justify-between bg-transparent p-2 text-white">
-			<div className="mx-auto flex w-4/5 max-w-screen-xl justify-evenly gap-4 rounded-md bg-white p-4  lg:px-8 lg:pb-0 lg:pt-4">
-				<NavBar />
+		<header className="sticky top-2 z-10 mx-auto flex min-h-20 w-4/5 max-w-screen-xl items-center justify-between gap-20 rounded-md bg-transparent bg-white  text-white  [box-shadow:rgba(100,_100,_111,_0.2)_0px_7px_29px_0px] lg:px-8 lg:pb-0">
+			<NavBar />
+			<div className="flex">
 				<AutoCompleteInput />
-				<div className="flex">
-					<Link href="/(.)cart/sidebar" className="flex items-center gap-2">
-						<ShoppingCart color="black" />
-						<div className="w-4 text-black">{quantity}</div>
-					</Link>
-					<Button>
-						<User color="black" />
-					</Button>
-				</div>
+				<Link
+					href="/(.)cart/sidebar"
+					className="m-1 flex items-center gap-2 rounded p-2 hover:bg-slate-100"
+				>
+					<ShoppingCart color="black" size={20} />
+					<div className="text-md w-4 font-medium text-black">
+						{quantity ?? 0}
+					</div>
+				</Link>
+				<Link href="/sign-in/" className="m-1 rounded p-2 hover:bg-slate-100">
+					<SignedIn>
+						<UserButton userProfileMode="navigation" />
+					</SignedIn>
+					<SignedOut>
+						<LogIn size={20} strokeWidth={2.25} color="black" />
+					</SignedOut>
+				</Link>
 			</div>
 		</header>
 	);

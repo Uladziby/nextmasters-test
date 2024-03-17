@@ -1,10 +1,9 @@
-import { getProducts } from "@/api/products";
+import { getProductsByOrder } from "@/api/products";
+import { ATitle } from "@/ui/atoms/ATitle/ATitle";
+import { DropdownComponent } from "@/ui/molecules/ProductListitem/DropdownComponent/DropdownComponent";
 import { Pagination } from "@/ui/organisms/Pagination/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList/ProductList";
-import {
-	NUMBER_ITEMS_ON_PAGE,
-	NUMBER_RECIEVED_PAGES,
-} from "@/utils/constatnts";
+import { NUMBER_ITEMS_ON_PAGE } from "@/utils/constatnts";
 
 export const generateStaticParams = async ({
 	params,
@@ -20,31 +19,32 @@ export const generateStaticParams = async ({
 
 export default async function ProductsPage({
 	params,
+	searchParams,
 }: {
 	params: { pageNumber: string };
+	searchParams: { sort: string; take: string };
 }) {
 	const currentPage = Number(params.pageNumber);
-
-	const products = await getProducts(
-		NUMBER_ITEMS_ON_PAGE * NUMBER_RECIEVED_PAGES,
-		currentPage ? currentPage * NUMBER_ITEMS_ON_PAGE : 0,
+	const skipItems = (currentPage - 1) * NUMBER_ITEMS_ON_PAGE;
+	const takeItems = Number(searchParams.take);
+	const { data, meta } = await getProductsByOrder(
+		NUMBER_ITEMS_ON_PAGE,
+		skipItems,
+		searchParams.sort,
 	);
 
-	const startIndex = (currentPage - 1) * NUMBER_ITEMS_ON_PAGE;
+	const products = data.slice(0, takeItems - skipItems || meta.total);
 
 	return (
-		<div className="min-h-70vh flex w-full flex-col justify-evenly">
-			<h1 className="mb-10 flex flex-none justify-center">Products</h1>
-			<div className="flex w-full flex-grow justify-center">
-				<ProductList
-					products={products.slice(startIndex, NUMBER_ITEMS_ON_PAGE)}
-				/>
-			</div>
+		<>
+			<ATitle className="text-center text-4xl">All products</ATitle>
+			<DropdownComponent />
+			<ProductList products={products} />
 			<Pagination
-				lengthArray={products.length}
-				page={1}
+				lengthArray={takeItems || meta.total}
+				page={currentPage}
 				itemsOnPage={NUMBER_ITEMS_ON_PAGE}
 			/>
-		</div>
+		</>
 	);
 }

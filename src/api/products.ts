@@ -4,7 +4,10 @@ import {
 	ProductGetByIdDocument,
 	ProductReviewsByIdDocument,
 	ProductCreateReviewDocument,
-	ProdutctsGetListDocument,
+	ProductsSortByOrderDocument,
+	type SortDirection,
+	type ProductSortBy,
+	ProductsGetListDocument,
 } from "@/gql/graphql";
 import { type ReviewFormSchema } from "@/ui/organisms/ReviewForm/formSchema";
 import { type ProductItemType, type ProductResponseItem } from "@/ui/types";
@@ -64,12 +67,9 @@ export const createProductReviewGraphql = async (
 	return response.reviewCreate.id;
 };
 
-export const getProducts = async (
-	numberItems: number,
-	_skip: number,
-): Promise<ProductListItemFragment[]> => {
+export const getProducts = async (numberItems: number, _skip: number) => {
 	const graphqlResponse = await executeGraphql({
-		query: ProdutctsGetListDocument,
+		query: ProductsGetListDocument,
 		variables: {
 			take: numberItems,
 			skip: _skip,
@@ -77,6 +77,27 @@ export const getProducts = async (
 	});
 
 	return graphqlResponse.products.data;
+};
+
+export const getProductsByOrder = async (
+	numberItems: number,
+	_skip: number,
+	sortValue: string,
+) => {
+	const orderByValue = sortValue ? sortValue.split("_")[0] : "DEFAULT";
+	const orderValue = sortValue ? sortValue.split("_")[1] : "ASC";
+
+	const graphqlResponse = await executeGraphql({
+		query: ProductsSortByOrderDocument,
+		variables: {
+			take: numberItems,
+			skip: _skip,
+			order: orderValue as SortDirection,
+			orderBy: orderByValue as ProductSortBy,
+		},
+	});
+
+	return graphqlResponse.products;
 };
 
 const productResponseItemToProductItemType = (

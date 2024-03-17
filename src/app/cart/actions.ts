@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
+import { revalidatePath } from "next/cache";
 import {
 	CartRemoveItemDocument,
 	ChangeItemQuantityDocument,
@@ -10,12 +11,12 @@ import {
 import { executeGraphql } from "@/api/executeGraphQL";
 import { getCartByIdFromCookies } from "@/api/cart";
 
-export const changeItemQuantity = (
+export const changeItemQuantity = async (
 	cartId: string,
 	itemId: string,
 	quantity: number,
 ) => {
-	return executeGraphql({
+	await executeGraphql({
 		query: ChangeItemQuantityDocument,
 		variables: {
 			id: cartId,
@@ -23,6 +24,7 @@ export const changeItemQuantity = (
 			productId: itemId,
 		},
 	});
+	revalidatePath(`/cart`);
 };
 
 export const removeItemFromCart = (cartId: string, itemId: string) => {

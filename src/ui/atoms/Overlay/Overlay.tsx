@@ -7,7 +7,7 @@ export function Overlay() {
 	return (
 		<div
 			onClick={() => router.back()}
-			className="absolute inset-0 z-10 bg-slate-800 bg-opacity-75"
+			className="absolute inset-0 z-30 h-full bg-slate-800 bg-opacity-75"
 		/>
 	);
 }

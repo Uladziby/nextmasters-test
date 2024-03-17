@@ -11,7 +11,7 @@ import {
 
 export const ReviewForm = ({ productId }: { productId: string }) => {
 	const formRef = useRef<HTMLFormElement | null>(null);
-	const [state, action] = useTypeSafeFormState(
+	const [_, action] = useTypeSafeFormState(
 		reviewFormSchema,
 		async (formData: ReviewFormSchema) => {
 			await reviewFormAction(productId, formData);

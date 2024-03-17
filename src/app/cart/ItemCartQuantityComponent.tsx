@@ -5,7 +5,7 @@ import { useOptimistic } from "react";
 import { Button } from "@/ui/atoms/Button/Button";
 import { changeItemQuantity } from "@/app/cart/actions";
 
-export const IncrementProductQuantity = ({
+export const ItemCartQuantityComponent = ({
 	quantity,
 	itemId,
 	cartId,
@@ -29,17 +29,19 @@ export const IncrementProductQuantity = ({
 	return (
 		<form className="flex justify-center gap-2">
 			<Button
-				className="hover:bg-slate-100"
+				className="bg-white p-1 hover:bg-slate-100"
 				type="submit"
 				formAction={decrement}
+				data-testid="decrement"
 			>
 				<Minus color="black" size={16} />
 			</Button>
 			<span className="flex items-center justify-center">{quantity}</span>
 			<Button
 				type="submit"
-				className="hover:bg-slate-100"
+				className="bg-white p-1 hover:bg-slate-100"
 				formAction={increment}
+				data-testid="increment"
 			>
 				<Plus color="black" size={16} />
 			</Button>
