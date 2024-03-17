@@ -1,0 +1,10 @@
+query CategoriestGetItems($take: Int, $skip: Int){
+     categories(take: $take, skip: $skip) {
+    data {
+      description
+      id
+      name
+      slug
+    }
+  }
+}

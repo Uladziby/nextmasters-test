@@ -9,6 +9,7 @@ export const SuggestedProductList = async () => {
 	await sleep(3000);
 	return (
 		<div data-testid="related-products">
+			<h2 className="mb-4 text-xl">Suggested products for you</h2>
 			<ProductList products={products.slice(-4)} />
 		</div>
 	);

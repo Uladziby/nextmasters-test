@@ -1,0 +1,15 @@
+query ProductsSortByOrder(
+	$orderBy: ProductSortBy! = DEFAULT
+	$take: Int!
+	$skip: Int!
+	$order: SortDirection! = ASC
+) {
+	products(orderBy: $orderBy, take: $take, skip: $skip, order: $order) {
+		data {
+			...ProductListItem
+		}
+		meta {
+			total
+		}
+	}
+}

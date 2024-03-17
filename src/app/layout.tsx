@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/ui/organisms/Header/Header";
 import { Footer } from "@/ui/organisms/Footer/Footer";
 import { firaSans } from "@/utils/fonts";
@@ -20,15 +21,17 @@ export default function RootLayout({
 	modal: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={`${firaSans.variable} h-full`}>
-			<body className={`${inter.className} h-full`}>
-				<div className="flex min-h-full w-full flex-col">
-					<Header />
-					<main className="flex-grow">{children}</main>
-					<Footer />
-				</div>
-				{modal}
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en" className={`${firaSans.variable} h-full`}>
+				<body className={`${inter.className} h-full bg-slate-100`}>
+					<div className="flex min-h-full w-full flex-col">
+						<Header />
+						<main className="flex-grow">{children}</main>
+						<Footer />
+					</div>
+					{modal}
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }

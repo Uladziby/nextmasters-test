@@ -11,7 +11,7 @@ export const AInput = ({
 	const {
 		field,
 		fieldState: { error },
-		formState: { isValid, isDirty },
+		formState: {},
 	} = useController({
 		name,
 		shouldUnregister: true,

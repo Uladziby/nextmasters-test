@@ -7,10 +7,15 @@ export const ProductList = ({
 	products: ProductListItemFragment[];
 }) => {
 	return (
-		<ul className="grid grid-cols-4 gap-4 " data-testid="products-list">
-			{products.map((product) => {
-				return <ProductListItem key={product.id} product={product} />;
-			})}
-		</ul>
+		<div className=" mx-auto flex flex-col justify-center">
+			<ul
+				className="grid max-w-4xl grid-cols-4 gap-4"
+				data-testid="products-list"
+			>
+				{products.map((product) => {
+					return <ProductListItem key={product.id} product={product} />;
+				})}
+			</ul>
+		</div>
 	);
 };

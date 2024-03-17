@@ -3,7 +3,7 @@ import React from "react";
 import NextImage from "next/image";
 import Link from "next/link";
 import { getCartByIdFromCookies } from "@/api/cart";
-import { IncrementProductQuantity } from "@/app/cart/IncrementProductQuantity";
+import { ItemCartQuantityComponent } from "@/app/cart/ItemCartQuantityComponent";
 import { formattedPrice } from "@/utils/formatCurrency";
 import { Button } from "@/ui/atoms/Button/Button";
 import { handlePaymentAction } from "@/app/cart/actions";
@@ -56,7 +56,7 @@ export default async function CartPage() {
 										</Link>
 									</td>
 									<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-										<IncrementProductQuantity
+										<ItemCartQuantityComponent
 											quantity={quantity}
 											itemId={product.id}
 											cartId={cart.id}
@@ -68,7 +68,7 @@ export default async function CartPage() {
 									<td className="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
 										{formattedPrice(product.price, quantity)}
 									</td>
-									<td className="relative flex justify-end whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+									<td className="items-center whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
 										<RemoveButton cartId={cart.id} productId={product.id} />
 									</td>
 								</tr>

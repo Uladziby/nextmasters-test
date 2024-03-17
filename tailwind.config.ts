@@ -13,11 +13,30 @@ const config: Config = {
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			backgroundColor: {
+				"loader-color":
+					"linear-gradient(45deg, transparent, transparent 40%, #ee55ff)",
+			},
 			minHeight: {
 				"70vh": "70vh",
 			},
+			borderRadius: {
+				"50%": "50%",
+			},
 			fontFamily: {
 				serif: ["var(--font-montserrat)"],
+			},
+			keyframes: {
+				spinny: {
+					"0%": { transform: "rotate(0)", filter: "hue-rotate(0)" },
+					"100%": {
+						transform: "rotate(360deg)",
+						filter: "hue-rotate(360deg)",
+					},
+				},
+			},
+			animation: {
+				spinny: "spinny 1.5s linear infinite",
 			},
 		},
 	},
