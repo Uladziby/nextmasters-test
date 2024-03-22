@@ -64,12 +64,43 @@
 		font-size: 1rem;
 		color: transparent;
 	}
+	.button_collection {
+		position: relative;
+		border: 1px solid black;
+		border-radius: 50px;
+		color: black;
+		background-color: transparent;
+		text-align: center;
+		padding: 15px 25px;
+		min-width: 180px;
+		height: 60px;
+
+		&:hover {
+			box-shadow:
+				0 10px 15px -3px rgb(0 0 0 / 0.1),
+				0 4px 6px -4px rgb(0 0 0 / 0.1);
+		}
+
+		&:hover::after {
+			opacity: 0.5;
+		}
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			background: transparent;
+			inset: 5px;
+			border-radius: 45px;
+			z-index: 1;
+			transition: opacity 0.3s ease;
+		}
+	}
 }
 
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 255, 255, 255;
+	--background-start-rgb: 0, 0, 0;
+	--background-end-rgb: 0, 0, 0;
 	--spinny: 5rem;
 	--activeclr: #e4ecfa;
 }

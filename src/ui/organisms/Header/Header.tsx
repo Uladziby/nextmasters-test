@@ -15,7 +15,7 @@ export const Header = async () => {
 	return (
 		<header className="sticky top-2 z-10 mx-auto flex min-h-20 w-4/5 max-w-screen-xl items-center justify-between gap-20 rounded-md bg-transparent bg-white  text-white  [box-shadow:rgba(100,_100,_111,_0.2)_0px_7px_29px_0px] lg:px-8 lg:pb-0">
 			<NavBar />
-			<div className="flex">
+			<div className="flex items-center">
 				<AutoCompleteInput />
 				<Link
 					href="/(.)cart/sidebar"

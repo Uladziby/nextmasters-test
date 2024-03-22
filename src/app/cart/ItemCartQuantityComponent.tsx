@@ -36,7 +36,9 @@ export const ItemCartQuantityComponent = ({
 			>
 				<Minus color="black" size={16} />
 			</Button>
-			<span className="flex items-center justify-center">{quantity}</span>
+			<span className="flex items-center justify-center" data-testid="quantity">
+				{quantity}
+			</span>
 			<Button
 				type="submit"
 				className="bg-white p-1 hover:bg-slate-100"
