@@ -1,20 +1,11 @@
-import { redirect } from "next/navigation";
 import React from "react";
-import NextImage from "next/image";
-import Link from "next/link";
 import { getCartByIdFromCookies } from "@/api/cart";
-import { ItemCartQuantityComponent } from "@/app/cart/ItemCartQuantityComponent";
-import { formattedPrice } from "@/utils/formatCurrency";
 import { Button } from "@/ui/atoms/Button/Button";
 import { handlePaymentAction } from "@/app/cart/actions";
-import { RemoveButton } from "@/app/cart/RemoveButton";
+import { CartItems } from "@/app/cart/cartItems";
 
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
-
-	if (!cart) {
-		redirect("/");
-	}
 
 	const headers = ["Product", "Quantity", "Price", "Subtotal"];
 
@@ -37,42 +28,7 @@ export default async function CartPage() {
 							</tr>
 						</thead>
 						<tbody className="divide-y divide-gray-200 bg-white">
-							{cart.items.map(({ product, quantity }) => (
-								<tr key={product.name}>
-									<td className="flex max-w-28 items-center gap-4 whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
-										{product.images[0] && (
-											<NextImage
-												width={60}
-												height={60}
-												src={product.images[0]?.url}
-												alt={product.images[0]?.alt}
-											/>
-										)}
-										<Link
-											href={`/product/${product.id}`}
-											className="hover:text-slate-400"
-										>
-											{product.name}
-										</Link>
-									</td>
-									<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-										<ItemCartQuantityComponent
-											quantity={quantity}
-											itemId={product.id}
-											cartId={cart.id}
-										/>
-									</td>
-									<td className="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
-										{formattedPrice(product.price, 1)}
-									</td>
-									<td className="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
-										{formattedPrice(product.price, quantity)}
-									</td>
-									<td className="items-center whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
-										<RemoveButton cartId={cart.id} productId={product.id} />
-									</td>
-								</tr>
-							))}
+							{cart ? <CartItems cart={cart} /> : <tr>Cart is empty</tr>}
 						</tbody>
 					</table>
 				</div>

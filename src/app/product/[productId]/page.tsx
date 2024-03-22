@@ -1,17 +1,17 @@
-import { Suspense } from "react";
 import { type Metadata } from "next";
 import NextImage from "next/image";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+import { SuggestedProductsAside } from "@/ui/organisms/SuggestedProductsAside/SuggestedProductsAside";
 import { getProductByIdGraphql } from "@/api/products";
-import { SuggestedProductList } from "@/ui/organisms/SuggestedProductsList/SuggestedProductList";
 import { addItemToCart, getOrCreateCart } from "@/api/cart";
 import { AddToCartButton } from "@/app/product/[productId]/AddToCartButton";
 import { ReviewForm } from "@/ui/organisms/ReviewForm/ReviewForm";
 import { CustomerReviews } from "@/ui/organisms/CustomerReviews/CustomerReviews";
-import Loading from "@/app/products/loading";
 import { RatingIndicator } from "@/ui/organisms/CustomerReviews/RatingIndicator";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { SUGGESTED_PRODUCTS_HEADLINE } from "@/utils/constatnts";
+import { changeItemQuantity } from "@/app/cart/actions";
 
 export const generateMetadata = async ({
 	params,
@@ -60,8 +60,17 @@ export default async function SingleProductPage({
 			httpOnly: true,
 			sameSite: "lax",
 		});
+		const isExistItem = cart.items.find(
+			(item) => item.product.id === params.productId,
+		);
 
-		await addItemToCart(cart.id, params.productId);
+		isExistItem
+			? await changeItemQuantity(
+					cart.id,
+					params.productId,
+					isExistItem.quantity + 1,
+				)
+			: await addItemToCart(cart.id, params.productId);
 
 		revalidateTag("cart");
 	}
@@ -85,7 +94,7 @@ export default async function SingleProductPage({
 					{name && (
 						<>
 							<div className="flex flex-col gap-4">
-								<h2 className="text-4xl">{name}</h2>
+								<h1 className="text-4xl">{name}</h1>
 								<p>{categories[0]?.name}</p>
 								<div className="flex justify-between">
 									{rating && (
@@ -96,7 +105,9 @@ export default async function SingleProductPage({
 									)}
 								</div>
 								<span>{description}</span>
-								<span className="text-3xl">{formatCurrency(price / 100)}</span>
+								<span className="text-3xl" test-dataid="product-price">
+									{formatCurrency(price / 100)}
+								</span>
 							</div>
 						</>
 					)}
@@ -106,11 +117,7 @@ export default async function SingleProductPage({
 					</form>
 				</div>
 			</article>
-			<aside className="max-w-2xs px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
-				<Suspense fallback={<Loading />}>
-					<SuggestedProductList />
-				</Suspense>
-			</aside>
+			<SuggestedProductsAside headline={SUGGESTED_PRODUCTS_HEADLINE} />
 			<section className="max-w-2xl px-4 py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-8">
 				<ReviewForm productId={id} />
 				<CustomerReviews productId={id} />

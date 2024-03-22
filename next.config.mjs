@@ -22,6 +22,11 @@ const nextConfig = {
 				permanent: false,
 			},
 			{
+				source: "/categories",
+				destination: "/categories/t-shirts/1",
+				permanent: false,
+			},
+			{
 				source: "/categories/accessories",
 				destination: "/categories/accessories/1",
 				permanent: false,

@@ -5,6 +5,7 @@ type ButtonProps = {
 	isDisabled?: boolean;
 	formAction?: () => void;
 	onClick?: () => void;
+	dataTestId?: string;
 };
 
 export const Button = ({
@@ -14,6 +15,7 @@ export const Button = ({
 	isDisabled,
 	formAction,
 	onClick,
+	dataTestId,
 }: ButtonProps) => {
 	const btnStyles =
 		"flex rounded border-0  text-white  hover:bg-indigo-600 focus:outline-none disabled:cursor-wait disabled:bg-indigo-300";
@@ -25,6 +27,7 @@ export const Button = ({
 			disabled={isDisabled}
 			className={btnStyles + ` ${className}`}
 			formAction={formAction}
+			data-testid={dataTestId}
 		>
 			{children}
 		</button>

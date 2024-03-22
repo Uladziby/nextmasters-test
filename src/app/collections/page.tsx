@@ -6,15 +6,15 @@ export default async function CollectionsPage() {
 	const collections = await getCollections();
 
 	return (
-		<div className="grid grid-cols-1 justify-items-center gap-8 text-gray-700 sm:justify-items-stretch md:grid-cols-3 lg:gap-4">
+		<div className="mx-auto grid grid-cols-1 justify-items-center gap-8 text-gray-700 sm:justify-items-stretch md:grid-cols-3 lg:gap-4">
 			{collections.map(({ id, name, description, slug }) => (
 				<ActiveLink
-					className="flex w-80 cursor-pointer flex-col rounded-xl border-2 border-gray-100 bg-neutral-50 p-3 shadow-lg transition duration-300 hover:scale-105 active:scale-110 sm:w-full sm:flex-row"
+					className="flex w-80 cursor-pointer flex-col rounded-xl border-2 border-gray-100 bg-neutral-50 p-3 transition duration-300 hover:shadow-lg active:scale-110 sm:w-full sm:flex-row"
 					key={id}
 					activeClassName={""}
 					href={`collections/${slug}`}
 					typeAriaCurrent={"page"}
-
+					name={name}
 				>
 					<div className="relative flex w-full items-center justify-center rounded-xl md:h-72 md:w-1/2">
 						<NextImage
