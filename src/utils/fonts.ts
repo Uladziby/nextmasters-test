@@ -8,7 +8,7 @@ export const firaCode = Fira_Code({
 });
 export const firaSans = Fira_Sans({
 	subsets: ["latin", "latin-ext"],
-	weight: ["300", "400", "700"],
+	weight: ["200", "300", "400", "700"],
 	variable: "--font-firaSans",
 	display: "swap",
 });

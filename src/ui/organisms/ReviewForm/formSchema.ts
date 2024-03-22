@@ -6,7 +6,7 @@ import { emailDomainNameValidator } from "@/utils/emailDomainNameValidator";
 const { emptyField, tooLongName, tooShortName, incorrectEmail } = formErrors;
 
 export const reviewFormSchema = z.object({
-	title: z.string().min(1).max(20),
+	headline: z.string().min(1).max(20),
 	author: z
 		.string()
 		.min(1, emptyField)

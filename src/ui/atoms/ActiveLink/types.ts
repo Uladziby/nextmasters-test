@@ -5,6 +5,7 @@ export type ActiveLinkProps = {
 	className: string;
 	activeClassName: string;
 	href: Route;
+	name: string;
 	typeAriaCurrent?:
 		| "page"
 		| "step"

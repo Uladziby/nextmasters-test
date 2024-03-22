@@ -7,20 +7,21 @@ import { type ActiveLinkProps } from "@/ui/atoms/ActiveLink/types";
 
 export const ActiveLink = ({
 	href,
+	name,
 	children,
 	className,
 	activeClassName,
 	typeAriaCurrent = "false",
 }: ActiveLinkProps) => {
 	const currentPathname = usePathname();
-
-	const isActive = currentPathname.split("/")[1] === href.split("/")[1];
+	const isActive = currentPathname.split("/").splice(1).includes(name);
 
 	return (
 		<Link
 			href={`${href}` as Route}
 			className={clsx(className, isActive && activeClassName)}
-			aria-current={typeAriaCurrent}
+			aria-current={isActive ? typeAriaCurrent : undefined}
+			data-testid="link"
 		>
 			{children}
 		</Link>
