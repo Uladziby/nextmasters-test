@@ -5,10 +5,13 @@ export default authMiddleware({
 		"/",
 		"/search",
 		"/cart",
+		"/(.)cart/sidebar",
+		"/categories",
 		"/categories/(.*)",
 		"/collections/(.*)",
+		"/collections",
 		"/product/(.*)",
-		"/products",
+		"/products/(.*)",
 	],
 });
 

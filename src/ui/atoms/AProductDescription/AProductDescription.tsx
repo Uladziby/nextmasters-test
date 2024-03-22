@@ -7,12 +7,14 @@ export const AProductDescription = ({
 }: ProductDescriptionProps) => {
 	return (
 		<div className="flex flex-col">
-			<h2 className="text-l font-bold">{name}</h2>
-			<p>{categories[0]?.name}</p>
-			<div className="flex justify-between">
-				<span>{formatCurrency(price / 100)}</span>
+			<h3 className="text-l ">{name}</h3>
+			<p className="font-extralight">{categories[0]?.name}</p>
+			<div className="flex justify-between ">
+				<span className="font-extralight" data-testid="product-price">
+					{formatCurrency(price / 100)}
+				</span>
 				{rating && (
-					<div className="flex items-center justify-between gap-2">
+					<div className="flex items-center justify-between gap-2 font-extralight">
 						<span>{rating.toFixed(1)}/5</span>
 						<RatingIndicator rating={rating} />
 					</div>

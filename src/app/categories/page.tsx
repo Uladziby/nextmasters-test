@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCategories } from "@/api/category";
 
 export default async function CategoriesPage() {
@@ -5,10 +6,13 @@ export default async function CategoriesPage() {
 
 	return (
 		<div>
-			<h1>CategoriesPage</h1>
-			{categories.map((category) => (
-				<div key={category.id}>{category.name}</div>
-			))}
+			<ul>
+				{categories.map((category) => (
+					<li key={category.id}>
+						<Link href={`/categories/${category.slug}/1`}>{category.name}</Link>
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }

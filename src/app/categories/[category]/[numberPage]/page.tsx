@@ -22,7 +22,6 @@ export default async function CategoryProductPage({
 			<h1 className="text-center text-3xl text-slate-600">
 				{capitalizeFirstLetter(params.category)}
 			</h1>
-
 			<div className="mx-auto grid max-w-4xl grid-cols-4 gap-4">
 				{products &&
 					products
