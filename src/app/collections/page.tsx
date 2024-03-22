@@ -14,7 +14,7 @@ export default async function CollectionsPage() {
 					activeClassName={""}
 					href={`collections/${slug}`}
 					typeAriaCurrent={"page"}
-
+					name={name}
 				>
 					<div className="relative flex w-full items-center justify-center rounded-xl md:h-72 md:w-1/2">
 						<NextImage
