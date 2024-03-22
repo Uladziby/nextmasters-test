@@ -21,9 +21,10 @@ export default function CategoryProductLayout({
 	children: ReactNode;
 }) {
 	return (
-		<div>
-			<h1>CategoryProductLayout</h1>
-			{children}
+		<div className="flex h-full w-full flex-col p-12">
+			<div className="flex min-h-70vh w-full flex-col justify-evenly gap-8">
+				{children}
+			</div>
 		</div>
 	);
 }

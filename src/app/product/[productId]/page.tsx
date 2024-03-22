@@ -1,8 +1,17 @@
 import { Suspense } from "react";
 import { type Metadata } from "next";
+import NextImage from "next/image";
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 import { getProductByIdGraphql } from "@/api/products";
-import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem";
 import { SuggestedProductList } from "@/ui/organisms/SuggestedProductsList/SuggestedProductList";
+import { addItemToCart, getOrCreateCart } from "@/api/cart";
+import { AddToCartButton } from "@/app/product/[productId]/AddToCartButton";
+import { ReviewForm } from "@/ui/organisms/ReviewForm/ReviewForm";
+import { CustomerReviews } from "@/ui/organisms/CustomerReviews/CustomerReviews";
+import Loading from "@/app/products/loading";
+import { RatingIndicator } from "@/ui/organisms/CustomerReviews/RatingIndicator";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 export const generateMetadata = async ({
 	params,
@@ -39,25 +48,73 @@ export default async function SingleProductPage({
 		refferal = searchParams.referral.toString();
 	}
 
-	const product = await getProductByIdGraphql(params.productId);
+	const { images, id, name, categories, rating, description, price } =
+		await getProductByIdGraphql(params.productId);
+
+	async function addToCartAction() {
+		"use server";
+
+		const cart = await getOrCreateCart();
+
+		cookies().set("cartId", cart.id, {
+			httpOnly: true,
+			sameSite: "lax",
+		});
+
+		await addItemToCart(cart.id, params.productId);
+
+		revalidateTag("cart");
+	}
 
 	return (
 		<>
-			<article className="prose flex max-w-xs flex-col justify-center">
-				{product && (
-					<>
-						<h1>{product.name}</h1>
-						<ProductListItem product={product} />
-						<span>{product.description}</span>
-					</>
-				)}
-				{refferal && <p>Refferal: {refferal}</p>}
+			<article className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2">
+				<div>
+					{images[0] && (
+						<NextImage
+							src={images[0]?.url}
+							alt={images[0]?.alt}
+							width={150}
+							height={150}
+							className="h-full w-full object-cover object-center "
+						/>
+					)}
+				</div>
+
+				<div className="body-font overflow-hidden text-gray-600">
+					{name && (
+						<>
+							<div className="flex flex-col gap-4">
+								<h2 className="text-4xl">{name}</h2>
+								<p>{categories[0]?.name}</p>
+								<div className="flex justify-between">
+									{rating && (
+										<div className="flex items-center justify-between gap-2">
+											<span>{rating.toFixed(1)}/5</span>
+											<RatingIndicator rating={rating} />
+										</div>
+									)}
+								</div>
+								<span>{description}</span>
+								<span className="text-3xl">{formatCurrency(price / 100)}</span>
+							</div>
+						</>
+					)}
+					{refferal && <p>Refferal: {refferal}</p>}
+					<form action={addToCartAction}>
+						<AddToCartButton />
+					</form>
+				</div>
 			</article>
-			<aside>
-				<Suspense>
+			<aside className="max-w-2xs px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
+				<Suspense fallback={<Loading />}>
 					<SuggestedProductList />
 				</Suspense>
 			</aside>
+			<section className="max-w-2xl px-4 py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-8">
+				<ReviewForm productId={id} />
+				<CustomerReviews productId={id} />
+			</section>
 		</>
 	);
 }

@@ -11,15 +11,18 @@ export const ProductListItem = ({
 	return (
 		<li className="list-none">
 			<Link href={`/product/${product.id}`}>
-				<article className="cursor-pointer">
+				<article className=" cursor-pointer">
 					{product.images[0] && (
 						<>
-							<NextImage
-								src={product.images[0]?.url}
-								alt={product.images[0]?.alt}
-								width={200}
-								height={200}
-							/>
+							<div className="overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-square">
+								<NextImage
+									src={product.images[0]?.url}
+									alt={product.images[0]?.alt}
+									width={150}
+									height={150}
+									className="h-full w-full object-cover object-center  transition-all duration-300 ease-in-out hover:scale-105"
+								/>
+							</div>
 							<AProductDescription product={product} />
 						</>
 					)}
