@@ -17,3 +17,4 @@ export const navLinks = [
 ];
 
 export const SUGGESTED_PRODUCTS_HEADLINE = "You may also like";
+
