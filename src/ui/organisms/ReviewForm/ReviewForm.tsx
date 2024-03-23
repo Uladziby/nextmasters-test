@@ -50,7 +50,7 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 					<span className="text-xs">Name</span>
 					<input
 						type="text"
-						name="author"
+						name="name"
 						required
 						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 					/>
@@ -59,7 +59,7 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 					<span className="text-xs">Description</span>
 					<textarea
 						rows={5}
-						name="description"
+						name="content"
 						required
 						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 					/>

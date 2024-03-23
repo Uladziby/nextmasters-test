@@ -95,7 +95,9 @@ export default async function SingleProductPage({
 									)}
 								</div>
 								<span>{description}</span>
-								<span className="text-3xl">{formatCurrency(price / 100)}</span>
+								<span className="text-3xl" test-dataid="product-price">
+									{formatCurrency(price / 100)}
+								</span>
 							</div>
 						</>
 					)}
