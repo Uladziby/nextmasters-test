@@ -34,6 +34,7 @@ export const Pagination = ({
 					href={createPageURL(page - 1) as Route}
 					className={`${page === 1 ? "invisible" : "visible"} relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
 					activeClassName=""
+					name={""}
 				>
 					<span className="sr-only">Previous</span>
 					<ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -49,6 +50,7 @@ export const Pagination = ({
 									: " text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
 							}`}
 							activeClassName=""
+							name=""
 						>
 							{number}
 						</ActiveLink>
@@ -58,6 +60,7 @@ export const Pagination = ({
 					href={createPageURL(page + 1) as Route}
 					className={`${page < numberPages ? "visible" : "invisible"} relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
 					activeClassName=""
+					name=""
 				>
 					<ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
 				</ActiveLink>
