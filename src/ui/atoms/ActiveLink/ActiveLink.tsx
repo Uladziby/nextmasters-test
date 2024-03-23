@@ -20,7 +20,7 @@ export const ActiveLink = ({
 		<Link
 			href={`${href}` as Route}
 			className={clsx(className, isActive && activeClassName)}
-			aria-current={typeAriaCurrent}
+			aria-current={isActive ? typeAriaCurrent : undefined}
 			data-testid="link"
 		>
 			{children}

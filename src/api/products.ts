@@ -60,6 +60,7 @@ export const createProductReviewGraphql = async (
 		variables: {
 			productId,
 			...data,
+			title: data.headline,
 		},
 		next: { tags: ["product"] },
 	});
