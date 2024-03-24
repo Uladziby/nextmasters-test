@@ -1,3 +1,4 @@
+import { type UrlObject } from "url";
 import { LogIn, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -18,7 +19,7 @@ export const Header = async () => {
 			<div className="flex items-center">
 				<AutoCompleteInput />
 				<Link
-					href="/(.)cart/sidebar"
+					href={"/cart/sidebar" as unknown as UrlObject}
 					className="m-1 flex items-center gap-2 rounded p-2 hover:bg-slate-100"
 				>
 					<ShoppingCart color="black" size={20} />

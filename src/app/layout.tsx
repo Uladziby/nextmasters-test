@@ -22,9 +22,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang="en" className={`${firaSans.variable} h-full`}>
-				<body className={`${inter.className} h-full bg-slate-100`}>
-					<div className="flex min-h-full w-full flex-col">
+			<html lang="en" className={`${firaSans.variable}`}>
+				<body className={`${inter.className} bg-slate-100`}>
+					<div className="flex flex-col">
 						<Header />
 						<main className="flex-grow">{children}</main>
 						<Footer />
