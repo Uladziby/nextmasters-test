@@ -26,7 +26,7 @@ export default async function CategoryProductPage({
 			</h1>
 			<ul
 				className="mx-auto grid max-w-4xl grid-cols-4 gap-4"
-				test-dataid="products-list"
+				data-testid="products-list"
 			>
 				{products &&
 					products
