@@ -18,10 +18,11 @@ export const Button = ({
 	dataTestId,
 }: ButtonProps) => {
 	const btnStyles =
-		"flex rounded border-0  text-white  hover:bg-indigo-600 focus:outline-none disabled:cursor-wait disabled:bg-indigo-300";
+		"flex rounded border-0  items-center text-white  hover:bg-indigo-600 focus:outline-none disabled:cursor-wait disabled:bg-indigo-300";
 
 	return (
 		<button
+			role="button"
 			onClick={onClick}
 			type={type}
 			disabled={isDisabled}

@@ -6,7 +6,6 @@ export const NUMBER_SUGGESTED_ITEMS = 4;
 export const navLinks = [
 	{ href: "/", title: "Home", name: "" },
 	{ href: "/products", title: "All", name: "products" },
-	{ href: "/collections/", title: "Collections", name: "collections" },
 	{ href: "/categories/hoodies", title: "Hoodies", name: "hoodies" },
 	{ href: "/categories/t-shirts", title: "T-Shirt", name: "t-shirts" },
 	{

@@ -1,5 +1,27 @@
+import { type Metadata } from "next/types";
+import { notFound } from "next/navigation";
 import { getCollectionProducts } from "@/api/collections";
 import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem";
+
+type CollectionPageProps = {
+	params: {
+		collection: string;
+		pageNumber: string;
+	};
+};
+
+export async function generateMetadata({
+	params,
+}: CollectionPageProps): Promise<Metadata> {
+	const response = await getCollectionProducts(params.collection);
+	if (!response) {
+		return notFound();
+	}
+
+	return {
+		title: response.name,
+	};
+}
 
 export default async function CollectionPage({
 	params,

@@ -1,5 +1,4 @@
 import { type ReactNode } from "react";
-import CategoriesPage from "@/app/categories/page";
 
 export const generateStaticParams = async ({
 	params,
@@ -25,7 +24,6 @@ export default function CategoryProductLayout({
 }) {
 	return (
 		<div className="flex h-full w-full flex-col p-12">
-			{CategoriesPage()}
 			<div className="flex min-h-70vh w-full flex-col justify-evenly gap-8">
 				{children}
 			</div>
