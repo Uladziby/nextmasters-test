@@ -36,7 +36,7 @@ export const ItemCartQuantityComponent = ({
 			>
 				<Minus color="black" size={16} />
 			</Button>
-			<span className="flex items-center justify-center" data-testid="quantity">
+			<span className="items-center justify-center py-2" data-testid="quantity">
 				{quantity}
 			</span>
 			<Button
