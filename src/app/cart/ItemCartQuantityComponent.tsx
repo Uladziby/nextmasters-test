@@ -32,7 +32,7 @@ export const ItemCartQuantityComponent = ({
 				className="bg-white p-1 hover:bg-slate-100"
 				type="submit"
 				formAction={decrement}
-				data-testid="decrement"
+				dataTestId="decrement"
 			>
 				<Minus color="black" size={16} />
 			</Button>
@@ -43,7 +43,7 @@ export const ItemCartQuantityComponent = ({
 				type="submit"
 				className="bg-white p-1 hover:bg-slate-100"
 				formAction={increment}
-				data-testid="increment"
+				dataTestId="increment"
 			>
 				<Plus color="black" size={16} />
 			</Button>

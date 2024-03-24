@@ -22,6 +22,7 @@ export const ActiveLink = ({
 			className={clsx(className, isActive && activeClassName)}
 			aria-current={isActive ? typeAriaCurrent : undefined}
 			data-testid="link"
+			role="link"
 		>
 			{children}
 		</Link>

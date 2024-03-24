@@ -11,6 +11,8 @@ import { CustomerReviews } from "@/ui/organisms/CustomerReviews/CustomerReviews"
 import { RatingIndicator } from "@/ui/organisms/CustomerReviews/RatingIndicator";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { SUGGESTED_PRODUCTS_HEADLINE } from "@/utils/constatnts";
+import { changeItemQuantity } from "@/app/cart/actions";
+
 
 export const generateMetadata = async ({
 	params,
@@ -59,8 +61,17 @@ export default async function SingleProductPage({
 			httpOnly: true,
 			sameSite: "lax",
 		});
+		const isExistItem = cart.items.find(
+			(item) => item.product.id === params.productId,
+		);
 
-		await addItemToCart(cart.id, params.productId);
+		isExistItem
+			? await changeItemQuantity(
+					cart.id,
+					params.productId,
+					isExistItem.quantity + 1,
+				)
+			: await addItemToCart(cart.id, params.productId);
 
 		revalidateTag("cart");
 	}

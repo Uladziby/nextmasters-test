@@ -11,7 +11,9 @@ export default async function CollectionPage({
 
 	return (
 		<div>
-			<h1 className="my-4 flex justify-center text-xl">{data?.name}</h1>
+			<h1 className="my-4 flex justify-center text-xl" role="heading">
+				{data?.name}
+			</h1>
 			<ul className="flex items-center justify-center gap-4">
 				{products &&
 					products.map((product) => (

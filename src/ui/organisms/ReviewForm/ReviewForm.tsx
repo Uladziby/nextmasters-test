@@ -34,7 +34,7 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 						type="text"
 						name="headline"
 						required
-						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 					/>
 				</label>
 				<label htmlFor="email">
@@ -43,7 +43,7 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 						type="text"
 						name="email"
 						required
-						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 					/>
 				</label>
 				<label htmlFor="author">
@@ -52,7 +52,7 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 						type="text"
 						name="name"
 						required
-						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 					/>
 				</label>
 				<label htmlFor="description">
@@ -61,10 +61,10 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 						rows={5}
 						name="content"
 						required
-						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 					/>
 				</label>
-				<ARatingInput name="rating" label="Rating" initialStars={5} />
+				<ARatingInput name="rating" label="rating" initialStars={5} />
 				<button
 					type="submit"
 					className="rounded-md bg-indigo-600 px-4 py-2 text-white"
