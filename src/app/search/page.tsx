@@ -21,11 +21,8 @@ export default async function SearchPage({
 }: {
 	searchParams: { query: string };
 }) {
-	//const { query: searchValue } = searchParams as { [key: string]: string };
-
 	if (!searchParams.query) return notFound();
 	const products = await getProductsByQuery(searchParams.query);
-	//console.log(products, products?.data.length, "searchParams.query");
 
 	return (
 		<div>{products?.data && <ProductList products={products.data} />}</div>

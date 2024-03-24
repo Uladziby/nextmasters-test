@@ -64,7 +64,7 @@ export const AutoCompleteInput = () => {
 
 	return (
 		<div className="flex items-center justify-center">
-			<div className="relative flex h-4 w-16 place-content-center text-center text-[1.5rem] text-black [transition:width_300ms_ease,_flex-grow_300ms_ease]">
+			<div className="relative flex h-10 w-16 place-content-center text-center text-[1.5rem] text-black [transition:width_300ms_ease,_flex-grow_300ms_ease]">
 				<input
 					role="searchbox"
 					ref={inputRef}
