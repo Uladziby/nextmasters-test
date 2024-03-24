@@ -4,6 +4,7 @@ import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { Pagination } from "@/ui/organisms/Pagination/Pagination";
 import { NUMBER_ITEMS_ON_PAGE } from "@/utils/constatnts";
+import { CategoriesList } from "@/ui/organisms/CategoriesList/CategoriesList";
 
 export default async function CategoryProductPage({
 	params,
@@ -19,15 +20,19 @@ export default async function CategoryProductPage({
 
 	return (
 		<>
+			<CategoriesList />
 			<h1 className="text-center text-3xl text-slate-600">
 				{capitalizeFirstLetter(params.category)}
 			</h1>
-			<div className="mx-auto grid max-w-4xl grid-cols-4 gap-4">
+			<ul
+				className="mx-auto grid max-w-4xl grid-cols-4 gap-4"
+				test-dataid="products-list"
+			>
 				{products &&
 					products
 						?.slice(startProductIndex, endProductIndex)
 						.map((p) => <ProductListItem key={p.id} product={p} />)}
-			</div>
+			</ul>
 			<Pagination
 				lengthArray={products.length}
 				page={currentPage}
