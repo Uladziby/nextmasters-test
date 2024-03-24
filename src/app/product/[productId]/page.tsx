@@ -13,7 +13,6 @@ import { formatCurrency } from "@/utils/formatCurrency";
 import { SUGGESTED_PRODUCTS_HEADLINE } from "@/utils/constatnts";
 import { changeItemQuantity } from "@/app/cart/actions";
 
-
 export const generateMetadata = async ({
 	params,
 }: {

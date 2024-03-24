@@ -24,7 +24,6 @@ export const ARatingInput = ({
 					return (
 						<label key={index}>
 							<input
-								className="invisible"
 								aria-label={String(currentRating)}
 								key={index}
 								type="radio"

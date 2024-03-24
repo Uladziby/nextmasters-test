@@ -6,10 +6,15 @@ export default async function CategoriesPage() {
 
 	return (
 		<div>
-			<ul>
+			<ul className="mb-4 grid gap-2 md:mb-8 md:grid-cols-3 md:gap-8">
 				{categories.map((category) => (
 					<li key={category.id}>
-						<Link href={`/categories/${category.slug}/1`}>{category.name}</Link>
+						<Link
+							className="grid h-12 w-full place-items-center rounded-2xl bg-white text-sm hover:shadow-md"
+							href={`/categories/${category.slug}/1`}
+						>
+							{category.name}
+						</Link>
 					</li>
 				))}
 			</ul>
