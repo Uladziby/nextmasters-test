@@ -24,7 +24,7 @@ export const Pagination = ({
 	};
 
 	return (
-		<div className="flex flex-none items-center justify-between bg-transparent px-20">
+		<div className="flex flex-none items-center justify-between bg-transparent">
 			<span>Found {lengthArray} products</span>
 			<nav
 				className="isolate inline-flex -space-x-px rounded-md shadow-sm"
