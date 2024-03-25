@@ -34,13 +34,12 @@ export const ItemCartQuantityComponent = ({
 				formAction={decrement}
 				dataTestId="decrement"
 			>
-				<Minus color="black" size={20} />
+				<Minus color="black" size={18} />
 			</Button>
 			<span
-				className="items-center justify-center text-lg"
+				className="text-md items-center justify-center"
 				data-testid="quantity"
 			>
-
 				{quantity}
 			</span>
 			<Button
@@ -49,7 +48,7 @@ export const ItemCartQuantityComponent = ({
 				formAction={increment}
 				dataTestId="increment"
 			>
-				<Plus color="black" size={20} />
+				<Plus color="black" size={18} />
 			</Button>
 		</form>
 	);

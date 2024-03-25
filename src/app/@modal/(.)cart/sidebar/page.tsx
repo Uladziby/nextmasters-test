@@ -40,9 +40,9 @@ export default async function CartModalPage() {
 					<form className="mt-6">
 						<a
 							href="/cart"
-							className="w-full w-full rounded border border-transparent bg-blue-500 px-6 py-3 text-center font-medium text-slate-50 hover:bg-blue-600 disabled:bg-gray-300"
+							className="block w-full rounded border border-transparent bg-slate-600 px-6 py-3 text-center font-medium text-slate-50 hover:bg-blue-600 disabled:bg-gray-300"
 						>
-							Order
+							Go to Cart
 						</a>
 					</form>
 				</div>
