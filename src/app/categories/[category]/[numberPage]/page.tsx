@@ -50,9 +50,11 @@ export default async function CategoryProductPage({
 				data-testid="products-list"
 			>
 				{products &&
-					products
-						?.slice(startProductIndex, endProductIndex)
-						.map((p) => <ProductListItem key={p.id} product={p} />)}
+					products?.slice(startProductIndex, endProductIndex).map((p) => (
+						<li key={p.id} className="list-none">
+							<ProductListItem product={p} />
+						</li>
+					))}
 			</ul>
 			<Pagination
 				lengthArray={products.length}

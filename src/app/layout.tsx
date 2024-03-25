@@ -24,11 +24,11 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en" className={`${firaSans.variable}`}>
 				<body className={`${inter.className} bg-slate-100`}>
-					<div className="flex flex-col">
-						<Header />
-						<main className="flex-grow">{children}</main>
-						<Footer />
-					</div>
+					<Header />
+					<main className="my-12 flex flex-grow items-center justify-center">
+						{children}
+					</main>
+					<Footer />
 					{modal}
 				</body>
 			</html>

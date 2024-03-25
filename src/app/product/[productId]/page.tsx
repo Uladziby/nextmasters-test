@@ -90,7 +90,7 @@ export default async function SingleProductPage({
 					)}
 				</div>
 
-				<div className="body-font overflow-hidden text-gray-600">
+				<div className="body-font flex flex-col justify-between overflow-hidden text-gray-600">
 					{name && (
 						<>
 							<div className="flex flex-col gap-4">
