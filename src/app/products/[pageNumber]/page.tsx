@@ -37,7 +37,9 @@ export default async function ProductsPage({
 
 	return (
 		<>
-			<ATitle className="text-center text-4xl">All products</ATitle>
+			<ATitle className="border-b-2 pb-4 text-center text-4xl font-light">
+				All products
+			</ATitle>
 			<DropdownComponent />
 			<ProductList products={products} />
 			<Pagination

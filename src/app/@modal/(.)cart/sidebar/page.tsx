@@ -24,9 +24,6 @@ export default async function CartModalPage() {
 						<h3 className="text-lg font-medium text-slate-900">
 							Shopping cart
 						</h3>
-						<a href="/cart" className="text-sm text-blue-500">
-							(open full view)
-						</a>
 					</div>
 					<div className="mt-8">
 						{cart?.items.length > 0 && <CartSideBarList cart={cart} />}
@@ -41,12 +38,12 @@ export default async function CartModalPage() {
 						Shipping and taxes will be added at the next step
 					</p>
 					<form className="mt-6">
-						<button
-							type="submit"
-							className="w-full rounded border border-transparent bg-blue-500 px-6 py-3 font-medium text-slate-50 hover:bg-blue-600 disabled:bg-gray-300"
+						<a
+							href="/cart"
+							className="w-full w-full rounded border border-transparent bg-blue-500 px-6 py-3 text-center font-medium text-slate-50 hover:bg-blue-600 disabled:bg-gray-300"
 						>
-							Checkout
-						</button>
+							Order
+						</a>
 					</form>
 				</div>
 			</div>

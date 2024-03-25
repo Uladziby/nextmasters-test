@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { type Metadata } from "next/types";
 import { getProductsByCategory } from "@/api/category";
 import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem";
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
@@ -6,12 +7,33 @@ import { Pagination } from "@/ui/organisms/Pagination/Pagination";
 import { NUMBER_ITEMS_ON_PAGE } from "@/utils/constatnts";
 import { CategoriesList } from "@/ui/organisms/CategoriesList/CategoriesList";
 
+type CategoriesPageProps = {
+	params: {
+		category: string;
+		pageNumber: string;
+	};
+};
+
+export async function generateMetadata({
+	params,
+}: CategoriesPageProps): Promise<Metadata> {
+	const response = await getProductsByCategory(params.category);
+	if (!response) {
+		return notFound();
+	}
+	return {
+		title: response.name,
+	};
+}
+
+
 export default async function CategoryProductPage({
 	params,
 }: {
 	params: { category: string; numberPage: string };
 }) {
-	const products = await getProductsByCategory(params.category);
+	const data = await getProductsByCategory(params.category);
+	const products = data?.products;
 	if (!products) return notFound();
 
 	const currentPage = Number(params.numberPage);
@@ -21,11 +43,12 @@ export default async function CategoryProductPage({
 	return (
 		<>
 			<CategoriesList />
-			<h1 className="text-center text-3xl text-slate-600">
+			<h1 className="mx-20 border-b-2 pb-4 text-center text-3xl text-slate-600">
 				{capitalizeFirstLetter(params.category)}
 			</h1>
 			<ul
-				className="mx-auto grid max-w-4xl grid-cols-4 gap-4"
+				className="mx-auto grid max-w-4xl grid-cols-4 gap-4 "
+
 				data-testid="products-list"
 			>
 				{products &&

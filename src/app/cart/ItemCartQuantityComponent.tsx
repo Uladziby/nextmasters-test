@@ -29,23 +29,27 @@ export const ItemCartQuantityComponent = ({
 	return (
 		<form className="flex justify-center gap-2">
 			<Button
-				className="bg-white p-1 hover:bg-slate-100"
+				className="bg-white hover:bg-slate-100"
 				type="submit"
 				formAction={decrement}
 				dataTestId="decrement"
 			>
-				<Minus color="black" size={16} />
+				<Minus color="black" size={20} />
 			</Button>
-			<span className="items-center justify-center py-2" data-testid="quantity">
+			<span
+				className="items-center justify-center text-lg"
+				data-testid="quantity"
+			>
+
 				{quantity}
 			</span>
 			<Button
 				type="submit"
-				className="bg-white p-1 hover:bg-slate-100"
+				className="bg-white hover:bg-slate-100"
 				formAction={increment}
 				dataTestId="increment"
 			>
-				<Plus color="black" size={16} />
+				<Plus color="black" size={20} />
 			</Button>
 		</form>
 	);

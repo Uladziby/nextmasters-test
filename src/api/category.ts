@@ -10,7 +10,7 @@ export const getProductsByCategory = async (categorySlug: string) => {
 		variables: { slug: categorySlug },
 	});
 
-	const products = data.category?.products;
+	const products = data.category;
 	return products;
 };
 
