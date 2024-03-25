@@ -7,6 +7,7 @@ export const CategoriesList = async () => {
 	return (
 		<div>
 			<ul className="grid px-16 md:mb-8 md:grid-cols-3 md:gap-6 ">
+
 				{categories.map((category) => (
 					<li key={category.id}>
 						<Link

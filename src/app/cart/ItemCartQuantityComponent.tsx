@@ -40,6 +40,7 @@ export const ItemCartQuantityComponent = ({
 				className="items-center justify-center text-lg"
 				data-testid="quantity"
 			>
+
 				{quantity}
 			</span>
 			<Button

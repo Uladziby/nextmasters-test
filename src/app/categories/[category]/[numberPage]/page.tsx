@@ -26,6 +26,7 @@ export async function generateMetadata({
 	};
 }
 
+
 export default async function CategoryProductPage({
 	params,
 }: {
@@ -47,6 +48,7 @@ export default async function CategoryProductPage({
 			</h1>
 			<ul
 				className="mx-auto grid max-w-4xl grid-cols-4 gap-4 "
+
 				data-testid="products-list"
 			>
 				{products &&
