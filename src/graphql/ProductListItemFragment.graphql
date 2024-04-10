@@ -4,11 +4,11 @@ fragment ProductListItem on Product {
 	description
 	price
 	rating
-	categories {
+	category {
 		name
+		slug
 	}
 	images {
 		url
-		alt
 	}
 }

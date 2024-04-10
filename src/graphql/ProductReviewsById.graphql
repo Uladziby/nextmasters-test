@@ -1,14 +1,12 @@
 query ProductReviewsById($id: ID!) {
-	product(id: $id) {
-		reviews {
-			author
-			createdAt
-			description
-			email
-			id
-			rating
-			title
-			updatedAt
-		}
+	reviews(id: $id) {
+		author
+		createdAt
+		description
+		_id
+		email
+		rating
+		title
+		updatedAt
 	}
 }

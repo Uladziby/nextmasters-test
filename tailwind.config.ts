@@ -12,7 +12,7 @@ const config: Config = {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-				"new-arrival": "url('../public/collections/new_arrival.jpg')",
+				"new-arrivals": "url('../public/collections/new_arrival.jpg')",
 				"summer-vibes": "url('../public/collections/summer_vibes.jpg')",
 				"elegant-extras": "url('../public/collections/elegant_extras.jpg')",
 			},

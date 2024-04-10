@@ -1,10 +1,15 @@
 query CollectionsGetList {
 	collections {
 		data {
+			_id
+			name
 			description
-			id
 			name
 			slug
+			image {
+				url
+				alt
+			}
 		}
 	}
 }

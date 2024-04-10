@@ -25,7 +25,7 @@ export const generateMetadata = async ({
 		description: product.description,
 		openGraph: {
 			title: `${product.name} - Shop online`,
-			description: product.description,
+			description: product.description ? product.description : "",
 			images: [
 				{
 					url: product.images[0]?.url as string,
@@ -48,7 +48,7 @@ export default async function SingleProductPage({
 		refferal = searchParams.referral.toString();
 	}
 
-	const { images, id, name, categories, rating, description, price } =
+	const { images, id, name, category, rating, description, price } =
 		await getProductByIdGraphql(params.productId);
 
 	async function addToCartAction() {
@@ -79,10 +79,10 @@ export default async function SingleProductPage({
 		<>
 			<article className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2">
 				<div>
-					{images[0] && (
+					{images[0]?.url && (
 						<NextImage
-							src={images[0]?.url}
-							alt={images[0]?.alt}
+							src={images[0].url}
+							alt={name}
 							width={150}
 							height={150}
 							className="h-full w-full object-cover object-center "
@@ -95,7 +95,7 @@ export default async function SingleProductPage({
 						<>
 							<div className="flex flex-col gap-4">
 								<h1 className="text-4xl">{name}</h1>
-								<p>{categories[0]?.name}</p>
+								<p>{category?.name}</p>
 								<div className="flex justify-between">
 									{rating && (
 										<div className="flex items-center justify-between gap-2">

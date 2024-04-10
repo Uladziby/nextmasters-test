@@ -26,14 +26,13 @@ export default async function ProductsPage({
 }) {
 	const currentPage = Number(params.pageNumber);
 	const skipItems = (currentPage - 1) * NUMBER_ITEMS_ON_PAGE;
-	const takeItems = Number(searchParams.take);
+	const takeItems = Number(searchParams.take) || NUMBER_ITEMS_ON_PAGE;
 	const { data, meta } = await getProductsByOrder(
-		NUMBER_ITEMS_ON_PAGE,
+		takeItems,
 		skipItems,
 		searchParams.sort,
 	);
-
-	const products = data.slice(0, takeItems - skipItems || meta.total);
+	if (!meta) return null;
 
 	return (
 		<>
@@ -41,9 +40,9 @@ export default async function ProductsPage({
 				All products
 			</ATitle>
 			<DropdownComponent />
-			<ProductList products={products} />
+			<ProductList products={data} />
 			<Pagination
-				lengthArray={takeItems || meta.total}
+				lengthArray={meta.total}
 				page={currentPage}
 				itemsOnPage={NUMBER_ITEMS_ON_PAGE}
 			/>
