@@ -1,7 +1,10 @@
 import { type Metadata } from "next/types";
 import { notFound } from "next/navigation";
-import { getCollectionProducts } from "@/api/collections";
 import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem";
+import {
+	getCollectionBySlug,
+	getProductsByCollection,
+} from "@/api/collections";
 
 type CollectionPageProps = {
 	params: {
@@ -13,7 +16,7 @@ type CollectionPageProps = {
 export async function generateMetadata({
 	params,
 }: CollectionPageProps): Promise<Metadata> {
-	const response = await getCollectionProducts(params.collection);
+	const response = await getCollectionBySlug(params.collection);
 	if (!response) {
 		return notFound();
 	}
@@ -28,17 +31,17 @@ export default async function CollectionPage({
 }: {
 	params: { collection: string; collectionSlug: string };
 }) {
-	const data = await getCollectionProducts(params.collection);
-	const products = data?.products;
+	const { data } = await getProductsByCollection(params.collection);
+	const collection = await getCollectionBySlug(params.collection);
 
 	return (
 		<div>
 			<h1 className="my-4 flex justify-center text-xl" role="heading">
-				{data?.name}
+				{collection.name}
 			</h1>
-			<ul className="flex items-center justify-center gap-4">
-				{products &&
-					products.map((product) => (
+			<ul className="grid grid-cols-2 grid-rows-5 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+				{data &&
+					data.map((product) => (
 						<ProductListItem key={product.id} product={product} />
 					))}
 			</ul>

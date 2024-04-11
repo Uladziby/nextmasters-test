@@ -6,7 +6,7 @@ export const AProductDescription = ({
 	product: { price, name, category, rating },
 }: ProductDescriptionProps) => {
 	return (
-		<div className="flex flex-col">
+		<div className="mt-2 flex flex-col">
 			<h3 className="text-l ">{name}</h3>
 			<p className="font-extralight">{(category as { name: string }).name}</p>
 			<div className="flex justify-between ">

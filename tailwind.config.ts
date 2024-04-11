@@ -20,6 +20,11 @@ const config: Config = {
 				"loader-color":
 					"linear-gradient(45deg, transparent, transparent 40%, #ee55ff)",
 			},
+			boxShadow: {
+				"elevation-card-rest":
+					"0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), var(--tw-shadoww)",
+				"elevation-card-hover": "var(--elevation-card-hover)",
+			},
 			minHeight: {
 				"70vh": "70vh",
 			},

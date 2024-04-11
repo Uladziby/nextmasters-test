@@ -5,7 +5,7 @@ export const OurCollections = async () => {
 	const collections = await getCollections();
 
 	return (
-		<ul className="grid grid-cols-1 md:w-3/4 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 xl:grid-cols-2">
+		<ul className="grid w-full grid-cols-1 md:w-3/4 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 xl:grid-cols-2">
 			<CollectionListItem data={collections[0]!} />
 			<CollectionListItem
 				data={collections[1]!}

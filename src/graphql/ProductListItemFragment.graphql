@@ -4,6 +4,7 @@ fragment ProductListItem on Product {
 	description
 	price
 	rating
+	collection
 	category {
 		name
 		slug
