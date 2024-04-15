@@ -1,12 +1,9 @@
 import React from "react";
-import { getCartByIdFromCookies } from "@/api/cart";
 import { Button } from "@/ui/atoms/Button/Button";
 import { handlePaymentAction } from "@/app/cart/actions";
 import { CartItems } from "@/app/cart/cartItems";
 
 export default async function CartPage() {
-	const cart = await getCartByIdFromCookies();
-
 	const headers = ["Product", "Quantity", "Price", "Subtotal"];
 
 	return (
@@ -28,7 +25,7 @@ export default async function CartPage() {
 							</tr>
 						</thead>
 						<tbody className="divide-y divide-gray-200 bg-white">
-							{cart ? <CartItems cart={cart} /> : <tr>Cart is empty</tr>}
+							<CartItems />
 						</tbody>
 					</table>
 				</div>

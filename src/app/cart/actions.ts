@@ -19,7 +19,7 @@ export const changeItemQuantity = async (
 	await executeGraphql({
 		query: ChangeItemQuantityDocument,
 		variables: {
-			id: cartId,
+			cartId: cartId,
 			quantity: quantity,
 			productId: itemId,
 		},

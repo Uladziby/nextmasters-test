@@ -5,5 +5,5 @@ export default function CategoryProductLayout({
 }: {
 	children: ReactNode;
 }) {
-	return <div className="m-6 ">{children}</div>;
+	return <>{children}</>;
 }

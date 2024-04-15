@@ -56,21 +56,26 @@ export default async function SingleProductPage({
 
 		const cart = await getOrCreateCart();
 
-		cookies().set("cartId", cart.id, {
+		cookies().set("cartId", cart._id, {
 			httpOnly: true,
 			sameSite: "lax",
 		});
-		const isExistItem = cart.items.find(
-			(item) => item.product.id === params.productId,
+
+		const isExistItem = cart?.products.find(
+			(item) => item.productId === params.productId,
 		);
+
+		console.log("cart", params, cart);
+
+		console.log("isExistItem", isExistItem?.productId);
 
 		isExistItem
 			? await changeItemQuantity(
-					cart.id,
+					cart._id,
 					params.productId,
-					isExistItem.quantity + 1,
+					isExistItem.quantity! + 1,
 				)
-			: await addItemToCart(cart.id, params.productId);
+			: await addItemToCart(cart._id, params.productId);
 
 		revalidateTag("cart");
 	}

@@ -27,6 +27,33 @@ export type BookInput = {
   title: Scalars['String']['input'];
 };
 
+export type Cart = {
+  _id: Scalars['String']['output'];
+  products: Array<CartItem>;
+};
+
+export type CartCreateInput = {
+  productId?: InputMaybe<Scalars['String']['input']>;
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type CartItem = {
+  productId?: Maybe<Scalars['String']['output']>;
+  quantity?: Maybe<Scalars['Int']['output']>;
+};
+
+export type CartProductsDetails = {
+  _id?: Maybe<Scalars['String']['output']>;
+  collection: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  images: Array<Image>;
+  name: Scalars['String']['output'];
+  price: Scalars['Int']['output'];
+  quantity?: Maybe<Scalars['Int']['output']>;
+  slug: Scalars['String']['output'];
+};
+
 export type Category = {
   description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -72,6 +99,9 @@ export type MetaList = {
 
 export type Mutation = {
   addBook?: Maybe<Book>;
+  cartAddItem: Cart;
+  cartChangeItemQuantity: Cart;
+  cartCreate: Cart;
   createReview: Scalars['String']['output'];
   login?: Maybe<PairsOfTokens>;
   loginOld: User;
@@ -84,6 +114,24 @@ export type Mutation = {
 
 export type MutationAddBookArgs = {
   book: BookInput;
+};
+
+
+export type MutationCartAddItemArgs = {
+  cartId: Scalars['ID']['input'];
+  input?: InputMaybe<CartCreateInput>;
+};
+
+
+export type MutationCartChangeItemQuantityArgs = {
+  cartId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+};
+
+
+export type MutationCartCreateArgs = {
+  input: CartCreateInput;
 };
 
 
@@ -167,6 +215,8 @@ export type ProductSortBy =
 export type Query = {
   book?: Maybe<Book>;
   books: Array<Book>;
+  cart: Cart;
+  cartProductsById: Array<CartProductsDetails>;
   categories: CategoryList;
   collection: Collection;
   collectionProducts: ProductList;
@@ -181,6 +231,16 @@ export type Query = {
 
 export type QueryBookArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type QueryCartArgs = {
+  cartId: Scalars['ID']['input'];
+};
+
+
+export type QueryCartProductsByIdArgs = {
+  cartId: Scalars['ID']['input'];
 };
 
 
@@ -268,6 +328,44 @@ export type UserLoginInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
+
+export type CartAddItemMutationVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+  input?: InputMaybe<CartCreateInput>;
+}>;
+
+
+export type CartAddItemMutation = { cartAddItem: { _id: string, products: Array<{ quantity?: number | null, productId?: string | null }> } };
+
+export type CartCreateMutationVariables = Exact<{
+  input: CartCreateInput;
+}>;
+
+
+export type CartCreateMutation = { cartCreate: { _id: string, products: Array<{ quantity?: number | null, productId?: string | null }> } };
+
+export type CartGetByIdQueryVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { cart: { _id: string, products: Array<{ productId?: string | null, quantity?: number | null }> } };
+
+export type CartProductsByIdQueryVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+}>;
+
+
+export type CartProductsByIdQuery = { cartProductsById: Array<{ name: string, id: string, description?: string | null, collection: string, slug: string, price: number, quantity?: number | null, _id?: string | null, images: Array<{ url: string }> }> };
+
+export type ChangeItemQuantityMutationVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+}>;
+
+
+export type ChangeItemQuantityMutation = { cartChangeItemQuantity: { _id: string, products: Array<{ quantity?: number | null, productId?: string | null }> } };
 
 export type CollectionBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -386,6 +484,71 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CartAddItemDocument = new TypedDocumentString(`
+    mutation CartAddItem($cartId: ID!, $input: CartCreateInput) {
+  cartAddItem(cartId: $cartId, input: $input) {
+    _id
+    products {
+      quantity
+      productId
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddItemMutation, CartAddItemMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate($input: CartCreateInput!) {
+  cartCreate(input: $input) {
+    _id
+    products {
+      quantity
+      productId
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($cartId: ID!) {
+  cart(cartId: $cartId) {
+    _id
+    products {
+      productId
+      quantity
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartProductsByIdDocument = new TypedDocumentString(`
+    query CartProductsById($cartId: ID!) {
+  cartProductsById(cartId: $cartId) {
+    name
+    id
+    description
+    collection
+    slug
+    price
+    quantity
+    _id
+    images {
+      url
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartProductsByIdQuery, CartProductsByIdQueryVariables>;
+export const ChangeItemQuantityDocument = new TypedDocumentString(`
+    mutation ChangeItemQuantity($cartId: ID!, $productId: ID!, $quantity: Int!) {
+  cartChangeItemQuantity(
+    cartId: $cartId
+    productId: $productId
+    quantity: $quantity
+  ) {
+    _id
+    products {
+      quantity
+      productId
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ChangeItemQuantityMutation, ChangeItemQuantityMutationVariables>;
 export const CollectionBySlugDocument = new TypedDocumentString(`
     query CollectionBySlug($slug: String!) {
   collection(slug: $slug) {
