@@ -31,7 +31,7 @@ export const removeItemFromCart = (cartId: string, itemId: string) => {
 	return executeGraphql({
 		query: CartRemoveItemDocument,
 		variables: {
-			id: cartId,
+			cartId: cartId,
 			productId: itemId,
 		},
 	});
@@ -55,9 +55,9 @@ export async function handlePaymentAction() {
 	const checkoutSession = await stripe.checkout.sessions.create({
 		payment_method_types: ["card", "blik"],
 		metadata: {
-			cartId: cart.id,
+			cartId: cart._id,
 		},
-		line_items: cart.items.map((item) => ({
+		/* line_items: cart.items.map((item) => ({
 			price_data: {
 				currency: "pln",
 				product_data: {
@@ -66,7 +66,7 @@ export async function handlePaymentAction() {
 				unit_amount: item.product.price,
 			},
 			quantity: item.quantity,
-		})),
+		})), */
 		mode: "payment",
 		success_url:
 			"http://localhost:3000/cart/success?session_id={CHECKOUT_SESSION_ID}",
