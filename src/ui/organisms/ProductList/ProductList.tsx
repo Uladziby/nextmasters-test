@@ -12,7 +12,7 @@ export const ProductList = ({
 
 	return (
 		<ul
-			className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+			className="grid max-w-4xl gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 			data-testid="products-list"
 		>
 			{products.map((product) => {

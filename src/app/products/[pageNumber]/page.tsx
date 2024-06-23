@@ -1,3 +1,4 @@
+import { type Metadata } from "next/types";
 import { getProductsByOrder } from "@/api/products";
 import { ATitle } from "@/ui/atoms/ATitle/ATitle";
 import { DropdownComponent } from "@/ui/molecules/ProductListitem/DropdownComponent/DropdownComponent";
@@ -16,6 +17,18 @@ export const generateStaticParams = async ({
 		return [{ pageNumber: "1" }, { pageNumber: "2" }, { pageNumber: "3" }];
 	}
 };
+
+export async function generateMetadata({
+	params,
+}: {
+	params: string;
+}): Promise<Metadata> {
+	console.log(params);
+	return {
+		title: "All products",
+		description: `All products, page number: ${params}`,
+	};
+}
 
 export default async function ProductsPage({
 	params,

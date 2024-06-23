@@ -8,6 +8,7 @@ import { getCartByIdFromCookies } from "@/api/cart";
 
 export const Header = async () => {
 	const cart = await getCartByIdFromCookies();
+
 	const quantity = cart?.products.reduce(
 		(acc, currentVal) => acc + currentVal.quantity!,
 		0,

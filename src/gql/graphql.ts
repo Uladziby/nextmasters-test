@@ -230,6 +230,7 @@ export type Query = {
   cart: Cart;
   cartProductsById: Array<CartProductsDetails>;
   categories: CategoryList;
+  category: ProductList;
   collection: Collection;
   collectionProducts: ProductList;
   collections: CollectionsList;
@@ -259,6 +260,11 @@ export type QueryCartProductsByIdArgs = {
 export type QueryCategoriesArgs = {
   skip?: Scalars['Int']['input'];
   take?: Scalars['Int']['input'];
+};
+
+
+export type QueryCategoryArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -435,6 +441,13 @@ export type ProductReviewsByIdQueryVariables = Exact<{
 
 
 export type ProductReviewsByIdQuery = { reviews: Array<{ author: string, createdAt: string, description: string, _id: string, email: string, rating?: number | null, title: string, updatedAt: string }> };
+
+export type ProductsByCategoryQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ProductsByCategoryQuery = { category: { data: Array<{ id: string, name: string, description?: string | null, price: number, rating: number, collection: string, category: { name: string, slug: string }, images: Array<{ url: string }> }>, meta?: { total: number } | null } };
 
 export type ProductsGetListQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']['input']>;
@@ -683,6 +696,32 @@ export const ProductReviewsByIdDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProductReviewsByIdQuery, ProductReviewsByIdQueryVariables>;
+export const ProductsByCategoryDocument = new TypedDocumentString(`
+    query ProductsByCategory($slug: String!) {
+  category(slug: $slug) {
+    data {
+      ...ProductListItem
+    }
+    meta {
+      total
+    }
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  price
+  rating
+  collection
+  category {
+    name
+    slug
+  }
+  images {
+    url
+  }
+}`) as unknown as TypedDocumentString<ProductsByCategoryQuery, ProductsByCategoryQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($take: Int, $skip: Int! = 0) {
   products(take: $take, skip: $skip) {

@@ -65,6 +65,7 @@ export const createProductReviewGraphql = async (
 		},
 		next: { tags: ["product"] },
 	});
+
 	return response;
 };
 

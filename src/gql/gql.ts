@@ -28,6 +28,7 @@ const documents = {
     "mutation ProductCreateReview($author: String!, $description: String!, $email: String!, $productId: ID!, $rating: Int!, $title: String!) {\n  createReview(\n    author: $author\n    description: $description\n    email: $email\n    productId: $productId\n    rating: $rating\n    title: $title\n  )\n}": types.ProductCreateReviewDocument,
     "fragment ProductListItem on Product {\n  id\n  name\n  description\n  price\n  rating\n  collection\n  category {\n    name\n    slug\n  }\n  images {\n    url\n  }\n}": types.ProductListItemFragmentDoc,
     "query ProductReviewsById($id: ID!) {\n  reviews(id: $id) {\n    author\n    createdAt\n    description\n    _id\n    email\n    rating\n    title\n    updatedAt\n  }\n}": types.ProductReviewsByIdDocument,
+    "query ProductsByCategory($slug: String!) {\n  category(slug: $slug) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      total\n    }\n  }\n}": types.ProductsByCategoryDocument,
     "query ProductsGetList($take: Int, $skip: Int! = 0) {\n  products(take: $take, skip: $skip) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      total\n    }\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetListByQuery($search: String) {\n  products(search: $search) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      total\n    }\n  }\n}": types.ProductsGetListByQueryDocument,
     "query ProductsSortByOrder($orderBy: ProductSortBy! = DEFAULT, $take: Int!, $skip: Int!, $order: SortDirection! = ASC) {\n  products(orderBy: $orderBy, take: $take, skip: $skip, order: $order) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      total\n    }\n  }\n}": types.ProductsSortByOrderDocument,
@@ -89,6 +90,10 @@ export function graphql(source: "fragment ProductListItem on Product {\n  id\n  
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductReviewsById($id: ID!) {\n  reviews(id: $id) {\n    author\n    createdAt\n    description\n    _id\n    email\n    rating\n    title\n    updatedAt\n  }\n}"): typeof import('./graphql').ProductReviewsByIdDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductsByCategory($slug: String!) {\n  category(slug: $slug) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      total\n    }\n  }\n}"): typeof import('./graphql').ProductsByCategoryDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

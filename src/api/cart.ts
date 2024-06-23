@@ -45,6 +45,7 @@ export async function getCartProductsById() {
 			query: CartProductsByIdDocument,
 			variables: { cartId: cartId },
 		});
+
 		if (cartProductsById) {
 			return { products: [...cartProductsById], cartId };
 		}
