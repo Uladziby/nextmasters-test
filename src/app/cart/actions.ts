@@ -9,7 +9,7 @@ import {
 	ChangeItemQuantityDocument,
 } from "@/gql/graphql";
 import { executeGraphql } from "@/api/executeGraphQL";
-import { getCartByIdFromCookies } from "@/api/cart";
+import { getCartDataForStripe } from "@/api/cart";
 
 export const changeItemQuantity = async (
 	cartId: string,
@@ -38,14 +38,12 @@ export const removeItemFromCart = (cartId: string, itemId: string) => {
 };
 
 export async function handlePaymentAction() {
-	console.log(`${process.env.STRIPE_SECRET_KEY}`);
-
 	if (!process.env.STRIPE_SECRET_KEY) {
 		throw new Error("Stripe secret key not found");
 	}
 
-	const cart = await getCartByIdFromCookies();
-	if (!cart) return;
+	const cart = await getCartDataForStripe();
+	if (!cart?.cartId) return;
 
 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 		apiVersion: "2023-10-16",
@@ -55,18 +53,18 @@ export async function handlePaymentAction() {
 	const checkoutSession = await stripe.checkout.sessions.create({
 		payment_method_types: ["card", "blik"],
 		metadata: {
-			cartId: cart._id,
+			cartId: cart.cartId,
 		},
-		/* line_items: cart.items.map((item) => ({
+		line_items: cart.products.map(({ name, price, quantity }) => ({
 			price_data: {
 				currency: "pln",
 				product_data: {
-					name: item.product.name,
+					name: name,
 				},
-				unit_amount: item.product.price,
+				unit_amount: price ? price : 0,
 			},
-			quantity: item.quantity,
-		})), */
+			quantity: quantity,
+		})),
 		mode: "payment",
 		success_url:
 			"http://localhost:3000/cart/success?session_id={CHECKOUT_SESSION_ID}",

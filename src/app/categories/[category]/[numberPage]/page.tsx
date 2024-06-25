@@ -42,7 +42,7 @@ export default async function CategoryProductPage({
 
 	return (
 		<>
-			<h1 className="mx-20 border-b-2 pb-4 text-center text-3xl text-slate-600">
+			<h1 className="mx-20 border-b-2 pb-4 text-center text-3xl font-bold text-slate-600">
 				{capitalizeFirstLetter(params.category)}
 			</h1>
 			<ul

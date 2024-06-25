@@ -23,7 +23,6 @@ export async function generateMetadata({
 }: {
 	params: string;
 }): Promise<Metadata> {
-	console.log(params);
 	return {
 		title: "All products",
 		description: `All products, page number: ${params}`,
@@ -49,7 +48,7 @@ export default async function ProductsPage({
 
 	return (
 		<>
-			<ATitle className="border-b-2 pb-4 text-center text-4xl font-light">
+			<ATitle className="border-b-2 pb-4 text-center font-gilroy text-4xl font-semibold  text-slate-600">
 				All products
 			</ATitle>
 			<DropdownComponent />

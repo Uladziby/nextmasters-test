@@ -32,7 +32,8 @@ const config: Config = {
 				"50%": "50%",
 			},
 			fontFamily: {
-				serif: ["var(--font-montserrat)"],
+				sans: ["var(--font-gilroy)"],
+				gilroy: ["var(--font-gilroy)"],
 			},
 			keyframes: {
 				spinny: {

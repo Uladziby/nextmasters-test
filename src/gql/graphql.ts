@@ -54,6 +54,13 @@ export type CartProductsDetails = {
   slug: Scalars['String']['output'];
 };
 
+export type CartResponseForStripe = {
+  name: Scalars['String']['output'];
+  price: Scalars['Int']['output'];
+  productId: Scalars['String']['output'];
+  quantity: Scalars['Int']['output'];
+};
+
 export type CartResponseMessage = {
   cartMessage?: Maybe<Scalars['String']['output']>;
   itemMessage?: Maybe<Scalars['String']['output']>;
@@ -228,6 +235,7 @@ export type Query = {
   book?: Maybe<Book>;
   books: Array<Book>;
   cart: Cart;
+  cartDataProductsForStripe: Array<CartResponseForStripe>;
   cartProductsById: Array<CartProductsDetails>;
   categories: CategoryList;
   category: ProductList;
@@ -248,6 +256,11 @@ export type QueryBookArgs = {
 
 
 export type QueryCartArgs = {
+  cartId: Scalars['ID']['input'];
+};
+
+
+export type QueryCartDataProductsForStripeArgs = {
   cartId: Scalars['ID']['input'];
 };
 
@@ -361,6 +374,13 @@ export type CartCreateMutationVariables = Exact<{
 
 
 export type CartCreateMutation = { cartCreate: { _id: string, products: Array<{ quantity?: number | null, productId?: string | null }> } };
+
+export type CartDataProductsForStripeQueryVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+}>;
+
+
+export type CartDataProductsForStripeQuery = { cartDataProductsForStripe: Array<{ name: string, price: number, productId: string, quantity: number }> };
 
 export type CartGetByIdQueryVariables = Exact<{
   cartId: Scalars['ID']['input'];
@@ -539,6 +559,16 @@ export const CartCreateDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartDataProductsForStripeDocument = new TypedDocumentString(`
+    query CartDataProductsForStripe($cartId: ID!) {
+  cartDataProductsForStripe(cartId: $cartId) {
+    name
+    price
+    productId
+    quantity
+  }
+}
+    `) as unknown as TypedDocumentString<CartDataProductsForStripeQuery, CartDataProductsForStripeQueryVariables>;
 export const CartGetByIdDocument = new TypedDocumentString(`
     query CartGetById($cartId: ID!) {
   cart(cartId: $cartId) {

@@ -10,7 +10,7 @@ export const ProductListItem = ({
 }) => {
 	return (
 		<Link href={`/product/${product.id}`} className="group">
-			<article className="shadow-elevation-card-rest rounded-large group-hover:shadow-elevation-card-hover relative flex aspect-[9/16] w-full items-center overflow-hidden rounded-lg p-4 transition-shadow duration-150 ease-in-out">
+			<article className="rounded-large relative flex aspect-[9/16] w-full items-center overflow-hidden rounded-lg p-4 shadow-elevation-card-rest transition-shadow duration-150 ease-in-out group-hover:shadow-elevation-card-hover">
 				{product.images[0] && (
 					<>
 						<NextImage
@@ -21,8 +21,6 @@ export const ProductListItem = ({
 							loading="lazy"
 							className="object-cover object-center transition-all duration-300 ease-in-out hover:scale-105"
 						/>
-						{/* <div className="overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-square">
-						</div> */}
 					</>
 				)}
 			</article>

@@ -16,6 +16,7 @@ import * as types from './graphql';
 const documents = {
     "mutation CartAddItem($cartId: ID!, $input: CartCreateInput) {\n  cartAddItem(cartId: $cartId, input: $input) {\n    _id\n    products {\n      quantity\n      productId\n    }\n  }\n}": types.CartAddItemDocument,
     "mutation CartCreate($input: CartCreateInput!) {\n  cartCreate(input: $input) {\n    _id\n    products {\n      quantity\n      productId\n    }\n  }\n}": types.CartCreateDocument,
+    "query CartDataProductsForStripe($cartId: ID!) {\n  cartDataProductsForStripe(cartId: $cartId) {\n    name\n    price\n    productId\n    quantity\n  }\n}": types.CartDataProductsForStripeDocument,
     "query CartGetById($cartId: ID!) {\n  cart(cartId: $cartId) {\n    _id\n    products {\n      productId\n      quantity\n    }\n  }\n}": types.CartGetByIdDocument,
     "query CartProductsById($cartId: ID!) {\n  cartProductsById(cartId: $cartId) {\n    name\n    id\n    description\n    collection\n    slug\n    price\n    quantity\n    _id\n    images {\n      url\n    }\n  }\n}": types.CartProductsByIdDocument,
     "mutation CartRemoveItem($cartId: ID!, $productId: ID!) {\n  cartRemoveItem(cartId: $cartId, productId: $productId) {\n    cartMessage\n    itemMessage\n  }\n}": types.CartRemoveItemDocument,
@@ -42,6 +43,10 @@ export function graphql(source: "mutation CartAddItem($cartId: ID!, $input: Cart
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CartCreate($input: CartCreateInput!) {\n  cartCreate(input: $input) {\n    _id\n    products {\n      quantity\n      productId\n    }\n  }\n}"): typeof import('./graphql').CartCreateDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query CartDataProductsForStripe($cartId: ID!) {\n  cartDataProductsForStripe(cartId: $cartId) {\n    name\n    price\n    productId\n    quantity\n  }\n}"): typeof import('./graphql').CartDataProductsForStripeDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

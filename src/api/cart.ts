@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import {
 	CartAddItemDocument,
 	CartCreateDocument,
+	CartDataProductsForStripeDocument,
 	CartGetByIdDocument,
 	CartProductsByIdDocument,
 } from "./../gql/graphql";
@@ -31,8 +32,26 @@ export async function getCartByIdFromCookies() {
 			query: CartGetByIdDocument,
 			variables: { cartId: cartId },
 		});
+
 		if (cart._id) {
 			return cart;
+		}
+	}
+}
+
+export async function getCartDataForStripe() {
+	const cartId = cookies().get("cartId")?.value;
+
+	if (cartId) {
+		const products = await executeGraphql({
+			query: CartDataProductsForStripeDocument,
+			variables: { cartId: cartId },
+		});
+		if (products.cartDataProductsForStripe) {
+			return {
+				products: [...products.cartDataProductsForStripe],
+				cartId: cartId,
+			};
 		}
 	}
 }

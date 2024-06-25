@@ -65,10 +65,6 @@ export default async function SingleProductPage({
 			(item) => item.productId === params.productId,
 		);
 
-		console.log("cart", params, cart);
-
-		console.log("isExistItem", isExistItem?.productId);
-
 		isExistItem
 			? await changeItemQuantity(
 					cart._id,
@@ -94,23 +90,25 @@ export default async function SingleProductPage({
 						/>
 					)}
 				</div>
-
 				<div className="body-font flex flex-col justify-between overflow-hidden text-gray-600">
 					{name && (
 						<>
 							<div className="flex flex-col gap-4">
-								<h1 className="text-4xl">{name}</h1>
-								<p>{category?.name}</p>
+								<h1 className="text-4xl font-bold">{name}</h1>
+								<p className="italic">{category?.name}</p>
 								<div className="flex justify-between">
 									{rating && (
-										<div className="flex items-center justify-between gap-2">
+										<div className="flex items-center justify-between gap-2 font-bold">
 											<span>{rating.toFixed(1)}/5</span>
 											<RatingIndicator rating={rating} />
 										</div>
 									)}
 								</div>
-								<span>{description}</span>
-								<span className="text-3xl" test-dataid="product-price">
+								<span className="not-italic">{description}</span>
+								<span
+									className="font-gilroy text-3xl font-bold"
+									test-dataid="product-price"
+								>
 									{formatCurrency(price / 100)}
 								</span>
 							</div>

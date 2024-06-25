@@ -7,10 +7,10 @@ export const AProductDescription = ({
 }: ProductDescriptionProps) => {
 	return (
 		<div className="mt-2 flex flex-col">
-			<h3 className="text-l ">{name}</h3>
-			<p className="font-extralight">{(category as { name: string }).name}</p>
+			<h3 className="font-semibold">{name}</h3>
+			<p className="italic">{(category as { name: string }).name}</p>
 			<div className="flex justify-between ">
-				<span className="font-extralight" data-testid="product-price">
+				<span className="font-medium" data-testid="product-price">
 					{formatCurrency(price / 100)}
 				</span>
 				{rating && (
