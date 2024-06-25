@@ -12,13 +12,18 @@ const config: Config = {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-				"new-arrival": "url('../public/collections/new_arrival.jpg')",
+				"new-arrivals": "url('../public/collections/new_arrival.jpg')",
 				"summer-vibes": "url('../public/collections/summer_vibes.jpg')",
 				"elegant-extras": "url('../public/collections/elegant_extras.jpg')",
 			},
 			backgroundColor: {
 				"loader-color":
 					"linear-gradient(45deg, transparent, transparent 40%, #ee55ff)",
+			},
+			boxShadow: {
+				"elevation-card-rest":
+					"0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), var(--tw-shadoww)",
+				"elevation-card-hover": "var(--elevation-card-hover)",
 			},
 			minHeight: {
 				"70vh": "70vh",
@@ -27,7 +32,8 @@ const config: Config = {
 				"50%": "50%",
 			},
 			fontFamily: {
-				serif: ["var(--font-montserrat)"],
+				sans: ["var(--font-gilroy)"],
+				gilroy: ["var(--font-gilroy)"],
 			},
 			keyframes: {
 				spinny: {

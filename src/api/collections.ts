@@ -1,32 +1,43 @@
-import { executeGraphql } from "@/api/executeGraphQL";
-import { type CollectionsList } from "@/api/types";
 import {
-	CollectionProductsDocument,
+	CollectionBySlugDocument,
+	CollectionProductsBySlugDocument,
 	CollectionsGetListDocument,
-} from "@/gql/graphql";
+} from "./../gql/graphql";
+import { executeGraphql } from "@/api/executeGraphQL";
 
-export const getCollections = async (): Promise<CollectionsList[]> => {
+export const getCollections = async () => {
 	const graphqlResponse = await executeGraphql({
 		query: CollectionsGetListDocument,
 		variables: {},
 	});
 
-	const collections = graphqlResponse.collections.data.map((p) => {
-		return {
-			id: p.id,
-			name: p.name,
-			description: p.description,
-			slug: p.slug,
-		};
-	});
+	const collections = graphqlResponse.collections.data;
 
 	return collections;
 };
 
-export const getCollectionProducts = async (collectionSlug: string) => {
+export const getProductsByCollection = async (slug: string) => {
 	const graphqlResponse = await executeGraphql({
-		query: CollectionProductsDocument,
-		variables: { slug: collectionSlug, id: "" },
+		query: CollectionProductsBySlugDocument,
+		variables: {
+			slug,
+		},
 	});
-	return graphqlResponse.collection;
+
+	const products = graphqlResponse.collectionProducts;
+
+	return products;
 };
+
+export async function getCollectionBySlug(slug: string) {
+	const graphqlResponse = await executeGraphql({
+		query: CollectionBySlugDocument,
+		variables: {
+			slug,
+		},
+	});
+
+	const collection = graphqlResponse.collection;
+
+	return collection;
+}

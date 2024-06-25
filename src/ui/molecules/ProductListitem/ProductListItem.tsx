@@ -9,23 +9,22 @@ export const ProductListItem = ({
 	product: ProductListItemFragment;
 }) => {
 	return (
-		<Link href={`/product/${product.id}`}>
-			<article className=" cursor-pointer">
+		<Link href={`/product/${product.id}`} className="group">
+			<article className="rounded-large relative flex aspect-[9/16] w-full items-center overflow-hidden rounded-lg p-4 shadow-elevation-card-rest transition-shadow duration-150 ease-in-out group-hover:shadow-elevation-card-hover">
 				{product.images[0] && (
 					<>
-						<div className="overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-square">
-							<NextImage
-								src={product.images[0]?.url}
-								alt={product.images[0]?.alt}
-								width={150}
-								height={150}
-								className="h-full w-full object-cover object-center  transition-all duration-300 ease-in-out hover:scale-105"
-							/>
-						</div>
-						<AProductDescription product={product} />
+						<NextImage
+							src={product.images[0].url}
+							alt={product.name}
+							width={200}
+							height={200}
+							loading="lazy"
+							className="object-cover object-center transition-all duration-300 ease-in-out hover:scale-105"
+						/>
 					</>
 				)}
 			</article>
+			<AProductDescription product={product} />
 		</Link>
 	);
 };

@@ -5,6 +5,8 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/atoms/Button/Button";
 import { removeItemFromCart } from "@/app/cart/actions";
+import { CART_RESPONSE_MESSAGES } from "@/utils/constatnts";
+import { removeCookieCartId } from "@/api/cookies";
 
 export const RemoveButton = ({
 	cartId,
@@ -18,7 +20,13 @@ export const RemoveButton = ({
 
 	const handlerRemoveItem = () => {
 		startTransition(async () => {
-			await removeItemFromCart(cartId, productId);
+			const response = await removeItemFromCart(cartId, productId);
+
+			const cartMessage = response.cartRemoveItem.cartMessage;
+
+			if (cartMessage === CART_RESPONSE_MESSAGES.cartDeleted) {
+				await removeCookieCartId();
+			}
 			router.refresh();
 		});
 	};

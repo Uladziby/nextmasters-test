@@ -15,5 +15,13 @@ export const navLinks = [
 	},
 ];
 
+export const CART_HEADERS = ["Product", "Quantity", "Price", "Subtotal"];
+
 export const SUGGESTED_PRODUCTS_HEADLINE = "You may also like";
 export const COLLECTION_BUTTON_NAME = "Explore";
+export const COSTUMER_REVIEWS_HEADLINE = "Reviews & Ratings";
+export const CART_RESPONSE_MESSAGES = {
+	cartDeleted: "Cart was deleted",
+	productRemoved: "Product removed from cart successfully",
+	cartNotEmpty: "Cart not empty",
+};

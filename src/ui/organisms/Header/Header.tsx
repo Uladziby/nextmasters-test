@@ -8,13 +8,14 @@ import { getCartByIdFromCookies } from "@/api/cart";
 
 export const Header = async () => {
 	const cart = await getCartByIdFromCookies();
-	const quantity = cart?.items.reduce(
-		(acc, currentVal) => acc + currentVal.quantity,
+
+	const quantity = cart?.products.reduce(
+		(acc, currentVal) => acc + currentVal.quantity!,
 		0,
 	);
 
 	return (
-		<header className="sticky top-2 z-10 mx-auto flex min-h-20 w-4/5 max-w-screen-xl items-center justify-between gap-20 rounded-md bg-transparent bg-white  text-white  [box-shadow:rgba(100,_100,_111,_0.2)_0px_7px_29px_0px] lg:px-8 lg:pb-0">
+		<header className="sticky top-2 z-10 mx-auto flex min-h-20 w-4/5 max-w-screen-xl items-center justify-between rounded-md bg-transparent bg-white  text-white  [box-shadow:rgba(100,_100,_111,_0.2)_0px_7px_29px_0px] lg:px-8 lg:pb-0">
 			<NavBar />
 			<div className="flex items-center">
 				<AutoCompleteInput />

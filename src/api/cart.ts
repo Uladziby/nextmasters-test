@@ -1,8 +1,10 @@
 import { cookies } from "next/headers";
 import {
 	CartAddItemDocument,
-	CartFindOrCreateDocument,
+	CartCreateDocument,
+	CartDataProductsForStripeDocument,
 	CartGetByIdDocument,
+	CartProductsByIdDocument,
 } from "./../gql/graphql";
 import { executeGraphql } from "@/api/executeGraphQL";
 
@@ -13,13 +15,13 @@ export async function getOrCreateCart() {
 		return existingCart;
 	}
 
-	const cart = await сreateCart();
+	const { cartCreate } = await сreateCart();
 
-	if (!cart.cartFindOrCreate) {
+	if (!cartCreate) {
 		throw new Error("Failed to create cart");
 	}
 
-	return cart.cartFindOrCreate;
+	return cartCreate;
 }
 
 export async function getCartByIdFromCookies() {
@@ -28,19 +30,51 @@ export async function getCartByIdFromCookies() {
 	if (cartId) {
 		const { cart } = await executeGraphql({
 			query: CartGetByIdDocument,
-			variables: { id: cartId },
+			variables: { cartId: cartId },
 		});
-		if (cart?.id) {
+
+		if (cart._id) {
 			return cart;
+		}
+	}
+}
+
+export async function getCartDataForStripe() {
+	const cartId = cookies().get("cartId")?.value;
+
+	if (cartId) {
+		const products = await executeGraphql({
+			query: CartDataProductsForStripeDocument,
+			variables: { cartId: cartId },
+		});
+		if (products.cartDataProductsForStripe) {
+			return {
+				products: [...products.cartDataProductsForStripe],
+				cartId: cartId,
+			};
+		}
+	}
+}
+
+export async function getCartProductsById() {
+	const cartId = cookies().get("cartId")?.value;
+
+	if (cartId) {
+		const { cartProductsById } = await executeGraphql({
+			query: CartProductsByIdDocument,
+			variables: { cartId: cartId },
+		});
+
+		if (cartProductsById) {
+			return { products: [...cartProductsById], cartId };
 		}
 	}
 }
 
 export async function сreateCart() {
 	return executeGraphql({
-		query: CartFindOrCreateDocument,
+		query: CartCreateDocument,
 		variables: {
-			id: "",
 			input: {},
 		},
 	});
@@ -50,8 +84,8 @@ export async function addItemToCart(cartId: string, _productId: string) {
 	return executeGraphql({
 		query: CartAddItemDocument,
 		variables: {
-			id: cartId,
-			input: { item: { productId: _productId } },
+			cartId: cartId,
+			input: { productId: _productId, quantity: 1 },
 		},
 	});
 }

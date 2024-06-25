@@ -25,7 +25,7 @@ export const generateMetadata = async ({
 		description: product.description,
 		openGraph: {
 			title: `${product.name} - Shop online`,
-			description: product.description,
+			description: product.description ? product.description : "",
 			images: [
 				{
 					url: product.images[0]?.url as string,
@@ -48,7 +48,7 @@ export default async function SingleProductPage({
 		refferal = searchParams.referral.toString();
 	}
 
-	const { images, id, name, categories, rating, description, price } =
+	const { images, id, name, category, rating, description, price } =
 		await getProductByIdGraphql(params.productId);
 
 	async function addToCartAction() {
@@ -56,21 +56,22 @@ export default async function SingleProductPage({
 
 		const cart = await getOrCreateCart();
 
-		cookies().set("cartId", cart.id, {
+		cookies().set("cartId", cart._id, {
 			httpOnly: true,
 			sameSite: "lax",
 		});
-		const isExistItem = cart.items.find(
-			(item) => item.product.id === params.productId,
+
+		const isExistItem = cart?.products.find(
+			(item) => item.productId === params.productId,
 		);
 
 		isExistItem
 			? await changeItemQuantity(
-					cart.id,
+					cart._id,
 					params.productId,
-					isExistItem.quantity + 1,
+					isExistItem.quantity! + 1,
 				)
-			: await addItemToCart(cart.id, params.productId);
+			: await addItemToCart(cart._id, params.productId);
 
 		revalidateTag("cart");
 	}
@@ -79,33 +80,35 @@ export default async function SingleProductPage({
 		<>
 			<article className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2">
 				<div>
-					{images[0] && (
+					{images[0]?.url && (
 						<NextImage
-							src={images[0]?.url}
-							alt={images[0]?.alt}
+							src={images[0].url}
+							alt={name}
 							width={150}
 							height={150}
 							className="h-full w-full object-cover object-center "
 						/>
 					)}
 				</div>
-
 				<div className="body-font flex flex-col justify-between overflow-hidden text-gray-600">
 					{name && (
 						<>
 							<div className="flex flex-col gap-4">
-								<h1 className="text-4xl">{name}</h1>
-								<p>{categories[0]?.name}</p>
+								<h1 className="text-4xl font-bold">{name}</h1>
+								<p className="italic">{category?.name}</p>
 								<div className="flex justify-between">
 									{rating && (
-										<div className="flex items-center justify-between gap-2">
+										<div className="flex items-center justify-between gap-2 font-bold">
 											<span>{rating.toFixed(1)}/5</span>
 											<RatingIndicator rating={rating} />
 										</div>
 									)}
 								</div>
-								<span>{description}</span>
-								<span className="text-3xl" test-dataid="product-price">
+								<span className="not-italic">{description}</span>
+								<span
+									className="font-gilroy text-3xl font-bold"
+									test-dataid="product-price"
+								>
 									{formatCurrency(price / 100)}
 								</span>
 							</div>

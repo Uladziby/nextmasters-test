@@ -1,0 +1,9 @@
+mutation CartCreate($input: CartCreateInput!) {
+	cartCreate(input: $input) {
+		_id
+		products {
+			quantity
+			productId
+		}
+	}
+}

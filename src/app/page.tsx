@@ -4,7 +4,7 @@ import { SUGGESTED_PRODUCTS_HEADLINE } from "@/utils/constatnts";
 
 export default function Home() {
 	return (
-		<section className="mx-auto  w-full max-w-7xl p-8">
+		<section className="mx-auto flex max-w-7xl flex-col items-center justify-center">
 			<OurCollections />
 			<SuggestedProductsAside headline={SUGGESTED_PRODUCTS_HEADLINE} />
 		</section>

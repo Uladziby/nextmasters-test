@@ -1,10 +1,10 @@
 query ProductsByCategory($slug: String!) {
 	category(slug: $slug) {
-		id
-		slug
-		name
-		products {
+		data {
 			...ProductListItem
+		}
+		meta {
+			total
 		}
 	}
 }

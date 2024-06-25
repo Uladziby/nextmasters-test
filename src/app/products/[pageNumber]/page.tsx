@@ -1,3 +1,4 @@
+import { type Metadata } from "next/types";
 import { getProductsByOrder } from "@/api/products";
 import { ATitle } from "@/ui/atoms/ATitle/ATitle";
 import { DropdownComponent } from "@/ui/molecules/ProductListitem/DropdownComponent/DropdownComponent";
@@ -17,6 +18,17 @@ export const generateStaticParams = async ({
 	}
 };
 
+export async function generateMetadata({
+	params,
+}: {
+	params: string;
+}): Promise<Metadata> {
+	return {
+		title: "All products",
+		description: `All products, page number: ${params}`,
+	};
+}
+
 export default async function ProductsPage({
 	params,
 	searchParams,
@@ -26,24 +38,23 @@ export default async function ProductsPage({
 }) {
 	const currentPage = Number(params.pageNumber);
 	const skipItems = (currentPage - 1) * NUMBER_ITEMS_ON_PAGE;
-	const takeItems = Number(searchParams.take);
+	const takeItems = Number(searchParams.take) || NUMBER_ITEMS_ON_PAGE;
 	const { data, meta } = await getProductsByOrder(
-		NUMBER_ITEMS_ON_PAGE,
+		takeItems,
 		skipItems,
 		searchParams.sort,
 	);
-
-	const products = data.slice(0, takeItems - skipItems || meta.total);
+	if (!meta) return null;
 
 	return (
 		<>
-			<ATitle className="border-b-2 pb-4 text-center text-4xl font-light">
+			<ATitle className="border-b-2 pb-4 text-center font-gilroy text-4xl font-semibold  text-slate-600">
 				All products
 			</ATitle>
 			<DropdownComponent />
-			<ProductList products={products} />
+			<ProductList products={data} />
 			<Pagination
-				lengthArray={takeItems || meta.total}
+				lengthArray={meta.total}
 				page={currentPage}
 				itemsOnPage={NUMBER_ITEMS_ON_PAGE}
 			/>

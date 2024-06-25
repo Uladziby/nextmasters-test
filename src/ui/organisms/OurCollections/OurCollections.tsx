@@ -1,46 +1,20 @@
-import Link from "next/link";
 import { getCollections } from "@/api/collections";
+import { CollectionListItem } from "@/ui/organisms/OurCollections/CollectionListItem";
 
 export const OurCollections = async () => {
 	const collections = await getCollections();
 
 	return (
-		<ul className="container mx-auto flex shadow-lg">
-			<ul className="left flex w-1/2 flex-col">
-				<li className="flex min-h-96 flex-col flex-wrap items-center justify-end bg-new-arrival bg-cover bg-center bg-no-repeat py-12 hover:shadow-xl">
-					<Link
-						className="button_collection cursor-pointer "
-						href={`/collections/${collections[1]?.slug}`}
-					>
-						<span className="text-sm">{collections[1]?.name}</span>
-					</Link>
-					{/* <p className="text-center text-slate-500">
-						{collections[1]?.description}
-					</p> */}
-				</li>
-				<li className="flex min-h-96 flex-col flex-wrap items-center justify-end bg-summer-vibes bg-cover bg-center bg-no-repeat py-12  hover:shadow-xl">
-					<Link
-						className="button_collection cursor-pointer"
-						href={`/collections/${collections[0]?.slug}`}
-					>
-						<span className="text-sm">{collections[0]?.name}</span>
-					</Link>
-					{/* <p className="text-center text-slate-500">
-						{collections[0]?.description}
-					</p> */}
-				</li>
-			</ul>
-			<li className="flex min-h-96 w-1/2 flex-col flex-wrap items-center justify-end bg-elegant-extras bg-cover bg-center bg-no-repeat py-12 hover:shadow-xl">
-				<Link
-					className="button_collection cursor-pointer"
-					href={`/collections/${collections[2]?.slug}`}
-				>
-					<span className="text-sm">{collections[2]?.name}</span>
-				</Link>
-				{/* <p className="text-center text-slate-500">
-					{collections[2]?.description}
-				</p> */}
-			</li>
+		<ul className="grid w-full grid-cols-1 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 xl:grid-cols-2">
+			<CollectionListItem data={collections[0]!} />
+			<CollectionListItem
+				data={collections[1]!}
+				className="col-start-1 row-start-2"
+			/>
+			<CollectionListItem
+				data={collections[2]!}
+				className="md:col-start-1  md:row-start-3 lg:col-start-2 lg:row-span-2 lg:row-start-1"
+			/>
 		</ul>
 	);
 };
