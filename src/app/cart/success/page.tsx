@@ -25,8 +25,12 @@ export default async function CartSucccesPage({
 
 	return (
 		<div>
-			<h2>Thank you for your purchase</h2>
-			<p>{session.payment_status}</p>
+			<h2 className="text-3xl font-extrabold text-stone-600">
+				Thank you for your purchase
+			</h2>
+			<p className="text-3xl font-extrabold text-stone-600">
+				{session.payment_status}
+			</p>
 		</div>
 	);
 }

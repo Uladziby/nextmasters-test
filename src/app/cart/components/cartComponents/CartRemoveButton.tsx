@@ -3,10 +3,10 @@
 import { Trash } from "lucide-react";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/ui/atoms/Button/Button";
 import { removeItemFromCart } from "@/app/cart/actions";
 import { CART_RESPONSE_MESSAGES } from "@/utils/constatnts";
 import { removeCookieCartId } from "@/api/cookies";
+import { Button } from "@/ui/atoms/Button/Button";
 
 export const RemoveButton = ({
 	cartId,

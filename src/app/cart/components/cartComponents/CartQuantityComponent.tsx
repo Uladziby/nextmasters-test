@@ -27,7 +27,7 @@ export const ItemCartQuantityComponent = ({
 	};
 
 	return (
-		<form className="flex justify-center gap-2">
+		<form className="flex justify-center gap-8">
 			<Button
 				className="bg-white hover:bg-slate-100"
 				type="submit"
@@ -37,7 +37,7 @@ export const ItemCartQuantityComponent = ({
 				<Minus color="black" size={18} />
 			</Button>
 			<span
-				className="text-md items-center justify-center"
+				className="items-center justify-center text-xl"
 				data-testid="quantity"
 			>
 				{quantity}

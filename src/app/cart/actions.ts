@@ -68,7 +68,7 @@ export async function handlePaymentAction() {
 		mode: "payment",
 		success_url:
 			"http://localhost:3000/cart/success?session_id={CHECKOUT_SESSION_ID}",
-		cancel_url: "http://localhost:3000/cart/cancel",
+		cancel_url: "http://localhost:3000/",
 	});
 
 	if (!checkoutSession.url) {
@@ -77,4 +77,8 @@ export async function handlePaymentAction() {
 
 	cookies().set("cartId", "");
 	redirect(checkoutSession.url);
+}
+
+export async function clearCookies() {
+	cookies().set("cartId", "");
 }

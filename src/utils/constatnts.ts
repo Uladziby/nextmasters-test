@@ -15,7 +15,7 @@ export const navLinks = [
 	},
 ];
 
-export const CART_HEADERS = ["Product", "Quantity", "Price", "Subtotal"];
+export const CART_HEADERS = ["Product", "Price", "Quantity", "Subtotal"];
 
 export const SUGGESTED_PRODUCTS_HEADLINE = "You may also like";
 export const COLLECTION_BUTTON_NAME = "Explore";

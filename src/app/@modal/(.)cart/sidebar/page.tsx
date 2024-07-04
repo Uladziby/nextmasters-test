@@ -15,10 +15,10 @@ export default async function CartModalPage() {
 		0,
 	);
 
-	const totalPrice = formatCurrency(total ?? 0 / 100);
+	const totalPrice = formatCurrency(total! / 100 ?? 0);
 
 	return (
-		<>
+		<div className="fixed bottom-0 left-0 right-0 top-0 flex justify-end overflow-hidden overscroll-none bg-black bg-opacity-50">
 			<Overlay />
 			<SideBarContainer>
 				<div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
@@ -34,6 +34,6 @@ export default async function CartModalPage() {
 					<SideBarButton />
 				</div>
 			</SideBarContainer>
-		</>
+		</div>
 	);
 }
