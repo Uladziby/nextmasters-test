@@ -6,13 +6,13 @@ export const NUMBER_SUGGESTED_ITEMS = 4;
 export const navLinks = [
 	{ href: "/", title: "Home", name: "" },
 	{ href: "/products", title: "All", name: "products" },
-	{ href: "/categories/hoodies", title: "Hoodies", name: "hoodies" },
-	{ href: "/categories/t-shirts", title: "T-Shirt", name: "t-shirts" },
+	{ href: "/categories/Models", title: "Models", name: "models" },
+	/* 	{ href: "/categories/t-shirts", title: "T-Shirt", name: "t-shirts" },
 	{
 		href: "/categories/accessories",
 		title: "Accessories",
 		name: "accessories",
-	},
+	}, */
 ];
 
 export const CART_HEADERS = ["Product", "Price", "Quantity", "Subtotal"];

@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { type Metadata } from "next";
+import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/ui/organisms/Header/Header";
 import { Footer } from "@/ui/organisms/Footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-gilroy" });
 
 export const metadata: Metadata = {
 	title: "Julia's Store",
@@ -23,7 +23,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body
-					className={`${inter.className} flex min-h-screen flex-col bg-slate-100`}
+					className={`${inter.variable} flex min-h-screen flex-col bg-slate-100 font-sans`}
 				>
 					<Header />
 					<main className="my-12 flex flex-1 flex-grow justify-center">

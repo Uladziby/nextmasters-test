@@ -33,17 +33,19 @@ export const CollectionListItem = ({
 			<div
 				key={_id}
 				className={clsx(
-					"flex flex-col flex-wrap items-center justify-end bg-cover bg-center bg-no-repeat py-12 hover:rotate-1 hover:shadow-xl  md:h-48 lg:h-full lg:min-h-96",
+					"flex flex-col flex-wrap items-center justify-end bg-cover bg-center bg-no-repeat py-12 hover:shadow-xl group-hover:rotate-1 group-hover:scale-110 lg:h-full lg:min-h-96",
 					imageUrl,
 					className,
 				)}
 				style={{ backgroundImage: `url(${imageUrl})` }}
 			></div>
 			<Link
-				className="button_collection absolute bottom-5 right-1/3 cursor-pointer"
+				className="button_collection   hover:text-secondary absolute bottom-5 right-1/3 cursor-pointer"
 				href={`/collections/${slug}`}
 			>
-				<span className="text-md group font-medium ">{name}</span>
+				<span className="text-md hover:text-secondary  font-medium">
+					{name}
+				</span>
 			</Link>
 		</>
 	);

@@ -5,6 +5,7 @@ import {
 	getCollectionBySlug,
 	getProductsByCollection,
 } from "@/api/collections";
+import { SectionHeader } from "@/ui/molecules/SectionHeader/SectionHeader";
 
 type CollectionPageProps = {
 	params: {
@@ -36,15 +37,15 @@ export default async function CollectionPage({
 
 	return (
 		<>
-			<h1 className="my-4 flex justify-center text-xl" role="heading">
-				{collection.name}
-			</h1>
-			<ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
-				{data &&
-					data.map((product) => (
-						<ProductListItem key={product.id} product={product} />
-					))}
-			</ul>
+			<SectionHeader title={"Discover"} subtitle={collection.name} />
+			<div className="flex h-full w-full items-center justify-center">
+				<ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+					{data &&
+						data.map((product) => (
+							<ProductListItem key={product.id} product={product} />
+						))}
+				</ul>
+			</div>
 		</>
 	);
 }

@@ -36,6 +36,12 @@ const config: Config = {
 				sans: ["var(--font-gilroy)"],
 				gilroy: ["var(--font-gilroy)"],
 			},
+			fontWeight: {
+				heavy: "900",
+			},
+			colors: {
+				secondary: "#7448FF",
+			},
 			keyframes: {
 				spinny: {
 					"0%": { transform: "rotate(0)", filter: "hue-rotate(0)" },

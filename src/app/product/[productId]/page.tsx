@@ -84,9 +84,10 @@ export default async function SingleProductPage({
 						<NextImage
 							src={images[0].url}
 							alt={name}
-							width={150}
-							height={150}
-							className="h-full w-full object-cover object-center "
+							width={500}
+							height={500}
+							objectFit="contain"
+							className="h-full w-full object-cover object-center"
 						/>
 					)}
 				</div>

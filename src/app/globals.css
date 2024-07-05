@@ -69,7 +69,7 @@
 	}
 
 	.button_collection {
-		@apply min-w-40 rounded-xl border border-solid border-[white] px-5 py-3 pb-4 text-center text-white hover:shadow-lg;
+		@apply hover:text-secondary hover:border-secondary  min-w-40  rounded-xl border border-solid border-[white] px-5 py-3 pb-4 text-center text-white hover:shadow-lg;
 	}
 	.button_collection::after {
 		@apply absolute inset-1 z-10 block rounded-3xl bg-transparent ease-in after:content-[''];
@@ -81,7 +81,7 @@
 		@apply relative mx-auto h-full w-full overflow-hidden;
 	}
 	.collection-common-styles {
-		@apply relative z-0 h-auto w-full transition-all duration-500 hover:scale-110;
+		@apply relative z-0 h-auto w-full transition-all duration-500;
 	}
 }
 
@@ -98,6 +98,13 @@
 	--tw-shadow-colored: var(--elevation-card-rest);
 	--elevation-card-hover: 0px 0px 0px 1px rgba(3, 7, 18, 0.08),
 		0px 1px 2px -1px rgba(3, 7, 18, 0.08), 0px 2px 8px 0px rgba(3, 7, 18, 0.1);
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: "Gilroy", sans-serif;
 }
 
 @media (prefers-color-scheme: light) {

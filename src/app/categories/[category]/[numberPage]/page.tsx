@@ -42,9 +42,9 @@ export default async function CategoryProductPage({
 
 	return (
 		<>
-			<h1 className="mx-20 border-b-2 pb-4 text-center text-3xl font-bold text-slate-600">
+			<h2 className="mx-20 border-b-2 pb-4 text-center text-3xl font-bold text-slate-600">
 				{capitalizeFirstLetter(params.category)}
-			</h1>
+			</h2>
 			<ul
 				className="mx-auto grid max-w-4xl grid-cols-4 gap-4 "
 				data-testid="products-list"
