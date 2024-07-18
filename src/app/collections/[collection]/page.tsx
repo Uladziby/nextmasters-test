@@ -1,11 +1,13 @@
 import { type Metadata } from "next/types";
 import { notFound } from "next/navigation";
+import { PlusCircle } from "lucide-react";
 import { ProductListItem } from "@/ui/molecules/ProductListitem/ProductListItem";
 import {
 	getCollectionBySlug,
 	getProductsByCollection,
 } from "@/api/collections";
 import { SectionHeader } from "@/ui/molecules/SectionHeader/SectionHeader";
+import { CardNewElementComponent } from "@/ui/molecules/CardNewElementComponent/CardNewElementComponent";
 
 type CollectionPageProps = {
 	params: {
@@ -33,6 +35,7 @@ export default async function CollectionPage({
 	params: { collection: string; collectionSlug: string };
 }) {
 	const { data } = await getProductsByCollection(params.collection);
+
 	const collection = await getCollectionBySlug(params.collection);
 
 	return (
@@ -44,6 +47,9 @@ export default async function CollectionPage({
 						data.map((product) => (
 							<ProductListItem key={product.id} product={product} />
 						))}
+					<CardNewElementComponent>
+						<PlusCircle size={120} color="white" />
+					</CardNewElementComponent>
 				</ul>
 			</div>
 		</>

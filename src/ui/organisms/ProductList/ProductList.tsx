@@ -19,7 +19,7 @@ export const ProductList = ({
 				{products.map((product) => {
 					return (
 						<li
-							className="list-none"
+							className="max-w-80 list-none"
 							key={product.id}
 							data-testid={data_test_id}
 						>
