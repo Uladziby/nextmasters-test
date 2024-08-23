@@ -32,7 +32,7 @@ export async function generateMetadata({
 export default async function CollectionPage({
 	params,
 }: {
-	params: { collection: string; collectionSlug: string };
+	params: { collection: string };
 }) {
 	const { data } = await getProductsByCollection(params.collection);
 
@@ -40,14 +40,14 @@ export default async function CollectionPage({
 
 	return (
 		<>
-			<SectionHeader title={"Discover"} subtitle={collection.name} />
-			<div className="flex h-full w-full items-center justify-center">
+			<SectionHeader subtitle={collection.name} />
+			<div className="flex h-full w-full  justify-center">
 				<ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
 					{data &&
 						data.map((product) => (
 							<ProductListItem key={product.id} product={product} />
 						))}
-					<CardNewElementComponent>
+					<CardNewElementComponent link={`${params.collection}`}>
 						<PlusCircle size={120} color="white" />
 					</CardNewElementComponent>
 				</ul>

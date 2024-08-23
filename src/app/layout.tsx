@@ -23,7 +23,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body
-					className={`${inter.variable} flex min-h-screen flex-col bg-slate-100 font-sans`}
+					className={`${inter.variable} flex min-h-screen flex-col bg-white font-sans`}
 				>
 					<Header />
 					<main className="my-12 flex flex-1 flex-grow justify-center">

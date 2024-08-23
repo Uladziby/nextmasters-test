@@ -21,7 +21,7 @@
 
 		"import/no-cycle": "error",
 		"import/no-default-export": "off",
-
+		"@typescript-eslint/no-explicit-any": "off",
 		// allow {} even though it's unsafe but comes handy
 		"@typescript-eslint/ban-types": [
 			"error",

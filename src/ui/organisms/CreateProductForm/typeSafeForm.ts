@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import { type TypeOf, type ZodType } from "zod";
 
-export type FormReview<
+export type FormCreateNewProduct<
 	TData = unknown,
 	TErrors extends Partial<Record<keyof TData, string[]>> = Partial<
 		Record<keyof TData, string[]>
@@ -24,19 +24,23 @@ export const useTypeSafeFormState = <FormSchema extends ZodType>(
 		async (
 			_prevState: unknown,
 			formData: FormData,
-		): Promise<FormReview<TypeOf<FormSchema>>> => {
-			//TODO refactor this
-			const updatedData = {
-				...Object.fromEntries(formData.entries()),
-				rating: parseInt(formData.get("rating") as string, 10),
-			};
+		): Promise<FormCreateNewProduct<TypeOf<FormSchema>>> => {
+			const plainObject: Record<string, unknown> = {};
 
-			const data = await schema.safeParseAsync(updatedData);
+			formData.forEach((value, key) => {
+				if (key === "price") {
+					plainObject[key] = Number(value);
+				} else {
+					plainObject[key] = value;
+				}
+			});
 
-			if (!data.success) {
+			const validatedData = await schema.safeParseAsync(plainObject);
+
+			if (!validatedData.success) {
 				return {
 					success: false as const,
-					errors: data.error.flatten().fieldErrors as Partial<
+					errors: validatedData.error.flatten().fieldErrors as Partial<
 						Record<keyof TypeOf<FormSchema>, string[]>
 					>,
 				};
@@ -45,9 +49,10 @@ export const useTypeSafeFormState = <FormSchema extends ZodType>(
 			const newState = {
 				success: true as const,
 				errors: {},
-				response: data.data as unknown,
+				response: validatedData.data as unknown,
 			};
-			await action(data.data as unknown);
+
+			await action(validatedData.data as unknown);
 
 			return newState;
 		},

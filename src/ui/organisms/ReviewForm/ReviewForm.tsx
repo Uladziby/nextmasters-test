@@ -8,6 +8,7 @@ import {
 	reviewFormSchema,
 	type ReviewFormSchema,
 } from "@/ui/organisms/ReviewForm/formSchema";
+import { Input } from "@/ui/atoms/Input/Input";
 
 export const ReviewForm = ({ productId }: { productId: string }) => {
 	const formRef = useRef<HTMLFormElement | null>(null);
@@ -28,42 +29,11 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 				data-testid="add-review-form"
 				className="mt-2 flex-col gap-y-2"
 			>
-				<label htmlFor="title">
-					<span className="text-xs">Title</span>
-					<input
-						type="text"
-						name="headline"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<label htmlFor="email">
-					<span className="text-xs">Email</span>
-					<input
-						type="text"
-						name="email"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<label htmlFor="author">
-					<span className="text-xs">Name</span>
-					<input
-						type="text"
-						name="name"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<label htmlFor="description">
-					<span className="text-xs">Description</span>
-					<textarea
-						rows={5}
-						name="content"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
+				<Input name="headline" isRequired />
+				<Input name="email" isRequired />
+				<Input name="name" isRequired />
+				<Input name="description" isRequired />
+
 				<ARatingInput name="rating" label="Rating" initialStars={5} />
 				<button
 					type="submit"

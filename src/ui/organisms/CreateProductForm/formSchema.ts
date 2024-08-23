@@ -9,9 +9,9 @@ export const newProductFormSchema = z.object({
 		.string()
 		.min(1, emptyField)
 		.min(2, tooShortName)
-		.max(200, tooLongName),
+		.max(600, tooLongName),
 	price: z.number().int().min(1),
-	image: z.string().url(),
+	image: z.string(),
 	category: z
 		.string()
 		.min(1, emptyField)
@@ -19,4 +19,4 @@ export const newProductFormSchema = z.object({
 		.max(50, tooLongName),
 });
 
-export type ReviewFormSchema = z.infer<typeof newProductFormSchema>;
+export type NewProductFormSchema = z.infer<typeof newProductFormSchema>;

@@ -25,3 +25,8 @@ export const CART_RESPONSE_MESSAGES = {
 	productRemoved: "Product removed from cart successfully",
 	cartNotEmpty: "Cart not empty",
 };
+
+export const EXAMPLE_URL_IMAGE = "https://example.com/image.jpg";
+export const EXAMPLE_PRICE = "1000 = 10.00 PLN";
+export const EXAMPLE_NAME = "Small Dragon";
+export const TITLE_NEW_PRODUCT_FORM = "Add new product";

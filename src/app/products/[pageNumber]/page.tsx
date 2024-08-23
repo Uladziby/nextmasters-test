@@ -1,10 +1,10 @@
 import { type Metadata } from "next/types";
 import { getProductsByOrder } from "@/api/products";
-import { ATitle } from "@/ui/atoms/ATitle/ATitle";
 import { DropdownComponent } from "@/ui/molecules/ProductListitem/DropdownComponent/DropdownComponent";
 import { Pagination } from "@/ui/organisms/Pagination/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList/ProductList";
 import { NUMBER_ITEMS_ON_PAGE } from "@/utils/constatnts";
+import { SectionHeader } from "@/ui/molecules/SectionHeader/SectionHeader";
 
 export const generateStaticParams = async ({
 	params,
@@ -48,9 +48,7 @@ export default async function ProductsPage({
 
 	return (
 		<>
-			<ATitle className="border-b-2 pb-4 text-center font-gilroy text-4xl font-semibold  text-slate-600">
-				All products
-			</ATitle>
+			<SectionHeader subtitle="All products" />
 			<DropdownComponent />
 			<ProductList products={data} />
 			<Pagination

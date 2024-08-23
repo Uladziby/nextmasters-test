@@ -16,10 +16,9 @@ export const ProductListItem = ({
 						<NextImage
 							src={product.images[0].url}
 							alt={product.name}
-							width={0}
-							height={0}
 							layout="fill"
-							objectFit="cover"
+							sizes="(max-width: 1024x) 100vw, (max-width: 1280px) 50vw, 700px"
+							priority={true}
 							className="object-cover object-center transition-all duration-300 ease-in-out hover:scale-105"
 						/>
 					</>

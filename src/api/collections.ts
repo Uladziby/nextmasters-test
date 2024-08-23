@@ -23,7 +23,7 @@ export const getProductsByCollection = async (slug: string) => {
 			slug,
 		},
 	});
-	console.log(graphqlResponse, "graphqlResponse");
+
 	const products = graphqlResponse.collectionProducts;
 
 	return products;

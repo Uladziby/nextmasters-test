@@ -8,7 +8,9 @@ import {
 	type SortDirection,
 	type ProductSortBy,
 	ProductsGetListDocument,
+	ProductCreateDocument,
 } from "@/gql/graphql";
+import { type NewProductFormSchema } from "@/ui/organisms/CreateProductForm/formSchema";
 import { type ReviewFormSchema } from "@/ui/organisms/ReviewForm/formSchema";
 import { type ProductItemType, type ProductResponseItem } from "@/ui/types";
 import { URL_BASE } from "@/utils/constatnts";
@@ -69,15 +71,30 @@ export const createProductReviewGraphql = async (
 	return response;
 };
 
+export const createNewProduct = async (
+	data: NewProductFormSchema,
+	collectionSlug: string,
+) => {
+	const newProduct = { ...data, collection: collectionSlug };
+	console.log(newProduct);
+	const response = await executeGraphql({
+		query: ProductCreateDocument,
+		variables: newProduct,
+		next: { tags: ["createNewProduct"] },
+	});
+	
+	return response;
+};
+
 export const getProducts = async (numberItems: number, _skip: number) => {
-	const graphqlResponse = await executeGraphql({
+	const { products } = await executeGraphql({
 		query: ProductsGetListDocument,
 		variables: {
 			take: numberItems,
 			skip: _skip,
 		},
 	});
-	return graphqlResponse.products.data;
+	return products.data;
 };
 
 export const getProductsByOrder = async (

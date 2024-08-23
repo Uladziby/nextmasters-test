@@ -115,6 +115,7 @@ export type Mutation = {
   cartChangeItemQuantity: Cart;
   cartCreate: Cart;
   cartRemoveItem: CartResponseMessage;
+  createProduct: Scalars['String']['output'];
   createReview: Scalars['String']['output'];
   login?: Maybe<PairsOfTokens>;
   loginOld: User;
@@ -151,6 +152,11 @@ export type MutationCartCreateArgs = {
 export type MutationCartRemoveItemArgs = {
   cartId: Scalars['ID']['input'];
   productId: Scalars['ID']['input'];
+};
+
+
+export type MutationCreateProductArgs = {
+  input: ProductCreateInput;
 };
 
 
@@ -218,6 +224,15 @@ export type Product = {
 export type ProductCategory = {
   name: Scalars['String']['output'];
   slug: Scalars['String']['output'];
+};
+
+export type ProductCreateInput = {
+  category: Scalars['String']['input'];
+  collection: Scalars['String']['input'];
+  description: Scalars['String']['input'];
+  image: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  price: Scalars['Int']['input'];
 };
 
 export type ProductList = {
@@ -440,6 +455,18 @@ export type ProductGetByIdQueryVariables = Exact<{
 
 
 export type ProductGetByIdQuery = { product?: { id: string, name: string, description?: string | null, price: number, rating: number, collection: string, category: { name: string, slug: string }, images: Array<{ url: string }> } | null };
+
+export type ProductCreateMutationVariables = Exact<{
+  description: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  price: Scalars['Int']['input'];
+  image: Scalars['String']['input'];
+  category: Scalars['String']['input'];
+  collection: Scalars['String']['input'];
+}>;
+
+
+export type ProductCreateMutation = { createProduct: string };
 
 export type ProductCreateReviewMutationVariables = Exact<{
   author: Scalars['String']['input'];
@@ -700,6 +727,13 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
     url
   }
 }`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
+export const ProductCreateDocument = new TypedDocumentString(`
+    mutation ProductCreate($description: String!, $name: String!, $price: Int!, $image: String!, $category: String!, $collection: String!) {
+  createProduct(
+    input: {name: $name, category: $category, description: $description, price: $price, image: $image, collection: $collection}
+  )
+}
+    `) as unknown as TypedDocumentString<ProductCreateMutation, ProductCreateMutationVariables>;
 export const ProductCreateReviewDocument = new TypedDocumentString(`
     mutation ProductCreateReview($author: String!, $description: String!, $email: String!, $productId: ID!, $rating: Int!, $title: String!) {
   createReview(

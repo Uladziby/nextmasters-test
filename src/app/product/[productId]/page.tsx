@@ -78,7 +78,7 @@ export default async function SingleProductPage({
 
 	return (
 		<>
-			<article className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2">
+			<article className="mx-auto grid max-w-7xl grid-cols-1 gap-16 pb-6 md:grid-cols-2">
 				<div>
 					{images[0]?.url && (
 						<NextImage

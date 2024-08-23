@@ -6,8 +6,6 @@ import { randomNumber } from "@/utils/randomNumber";
 export const SuggestedProductList = async () => {
 	const products = await getProducts(NUMBER_SUGGESTED_ITEMS, randomNumber(10));
 
-	console.log(products, "products");
-
 	return (
 		<div data-testid="related-products">
 			<ProductList products={products.slice(-1)} />
