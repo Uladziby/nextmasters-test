@@ -39,19 +39,17 @@ export default async function CollectionPage({
 	const collection = await getCollectionBySlug(params.collection);
 
 	return (
-		<>
+		<div className="small:flex-row small:items-start content-container flex flex-col justify-center py-6">
 			<SectionHeader subtitle={collection.name} />
-			<div className="flex h-full w-full  justify-center">
-				<ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
-					{data &&
-						data.map((product) => (
-							<ProductListItem key={product.id} product={product} />
-						))}
-					<CardNewElementComponent link={`${params.collection}`}>
-						<PlusCircle size={120} color="white" />
-					</CardNewElementComponent>
-				</ul>
-			</div>
-		</>
+			<ul className="grid w-full grid-cols-2  gap-x-4 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+				{data &&
+					data.map((product) => (
+						<ProductListItem key={product.id} product={product} />
+					))}
+				<CardNewElementComponent link={`${params.collection}`}>
+					<PlusCircle size={120} color="white" />
+				</CardNewElementComponent>
+			</ul>
+		</div>
 	);
 }

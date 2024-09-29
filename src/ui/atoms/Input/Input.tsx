@@ -7,33 +7,36 @@ export const Input = ({
 	error,
 	type = "text",
 	placeholder,
+	register,
 }: {
 	name: string;
 	isRequired?: boolean;
-	error?: string[];
+	error?: string;
 	type?: string;
 	placeholder?: string;
 	label?: string;
+	register: any;
 }) => {
 	return (
 		<>
 			<label htmlFor={name}>
-				<span className="text-md text-secondary">
-					{capitalizeFirstLetter(label || name)}
-				</span>
+				{label && (
+					<span className="text-md text-secondary">
+						{capitalizeFirstLetter(label)}
+					</span>
+				)}
 				<input
+					{...register}
 					id={name}
 					type={type}
 					name={name}
 					placeholder={placeholder}
 					required={isRequired}
-					className="mt-1 block h-12 w-full rounded-md border-gray-300 px-4 text-lg shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+					className="min-w-0 flex-auto rounded-md border-0 px-3.5 py-2 text-lg text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-neutral-600"
 				/>
 			</label>
 			{error && error.length > 0 && (
-				<span className="mt-1 block text-sm text-red-500">
-					{error.join(", ")}
-				</span>
+				<span className="mt-1 block text-sm text-red-500">{error}</span>
 			)}
 		</>
 	);

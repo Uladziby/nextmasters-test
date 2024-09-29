@@ -30,3 +30,8 @@ export const EXAMPLE_URL_IMAGE = "https://example.com/image.jpg";
 export const EXAMPLE_PRICE = "1000 = 10.00 PLN";
 export const EXAMPLE_NAME = "Small Dragon";
 export const TITLE_NEW_PRODUCT_FORM = "Add new product";
+export const LOGO_TEXT = "3D Models Store";
+export const CONTACTUS_HEADLINE = "Contact Us";
+export const CONTACTUS_SUBTITLE =
+	"Hi, we are here to help you. If you have any questions, Please fill out this form to reach out.";
+export const MESSAGE_SENDED = "Thank you! Your message was sended.";

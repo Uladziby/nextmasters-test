@@ -2,6 +2,7 @@ import "./globals.css";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/react";
 import { Header } from "@/ui/organisms/Header/Header";
 import { Footer } from "@/ui/organisms/Footer/Footer";
 
@@ -31,6 +32,7 @@ export default function RootLayout({
 					</main>
 					<Footer />
 					{modal}
+					<Analytics />
 				</body>
 			</html>
 		</ClerkProvider>

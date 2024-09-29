@@ -49,6 +49,10 @@ const nextConfig = {
 	},
 	transpilePackages: ["lucide-react"],
 	output: "standalone",
+	reactStrictMode: true,
+	env: {
+		BASE_URL: process.env.NEXT_PUBLIC_KEY_EMAILJS,
+	},
 };
 
 //const withMDX = require("@next/mdx")();
