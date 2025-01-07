@@ -29,32 +29,52 @@ export function CreateProductForm({ collection }: { collection: string }) {
 		},
 	);
 
+	const errors = state?.errors;
+
 	return (
-		<div className="container flex max-w-2xl flex-col gap-8">
-			<form ref={formRef} action={action}>
+		<form ref={formRef} action={action}>
+			<div className="container flex max-w-2xl flex-col gap-8">
 				<Input
 					name="name"
-					error={state?.errors.name}
+					label="Product Name"
+					error={errors?.name?.join(", ")}
 					placeholder={EXAMPLE_NAME}
+					register={undefined}
 				/>
-				<Input name="description" error={state?.errors.description} />
+				<Input
+					name="description"
+					label="Description"
+					error={errors?.description?.join(", ")}
+					placeholder="exp: This is a great product"
+					register={undefined}
+				/>
 				<Input
 					name="price"
 					type="number"
+					label="Price"
 					isRequired
-					error={state?.errors.price}
+					error={errors?.price?.join(", ")}
 					placeholder={EXAMPLE_PRICE}
+					register={undefined}
 				/>
 				<Input
 					name="image"
 					label="Image URL"
 					isRequired
-					error={state?.errors.image}
+					error={errors?.image?.join(", ")}
 					placeholder={EXAMPLE_URL_IMAGE}
+					register={undefined}
 				/>
-				<Input name="category" isRequired error={state?.errors.category} />
+				<Input
+					name="category"
+					label="Category"
+					placeholder="exp : models"
+					isRequired
+					error={errors?.category?.join(", ")}
+					register={undefined}
+				/>
 				<SubmitButton />
-			</form>
-		</div>
+			</div>
+		</form>
 	);
 }

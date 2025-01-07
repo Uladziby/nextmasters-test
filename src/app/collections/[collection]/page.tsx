@@ -39,9 +39,9 @@ export default async function CollectionPage({
 	const collection = await getCollectionBySlug(params.collection);
 
 	return (
-		<div className="small:flex-row small:items-start content-container flex flex-col justify-center py-6">
+		<>
 			<SectionHeader subtitle={collection.name} />
-			<ul className="grid w-full grid-cols-2  gap-x-4 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+			<ul className="grid grid-cols-2  gap-x-4 px-10 py-6 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
 				{data &&
 					data.map((product) => (
 						<ProductListItem key={product.id} product={product} />
@@ -50,6 +50,6 @@ export default async function CollectionPage({
 					<PlusCircle size={120} color="white" />
 				</CardNewElementComponent>
 			</ul>
-		</div>
+		</>
 	);
 }

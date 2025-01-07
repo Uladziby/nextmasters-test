@@ -39,6 +39,7 @@ export const CartItems = async ({ cart }: { cart: CartItemsType | null }) => {
 									quantity={quantity}
 									itemId={_id}
 									cartId={cart.cartId}
+									isDisabled={true}
 								/>
 							</td>
 							<td className="whitespace-nowrap py-4 pl-4 pr-3 text-center text-lg font-medium text-gray-900 sm:pl-6">

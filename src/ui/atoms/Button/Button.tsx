@@ -20,7 +20,7 @@ export const Button = ({
 	id,
 }: ButtonProps) => {
 	const btnStyles =
-		"rounded border-0 items-center text-white  hover:bg-indigo-600 focus:outline-none disabled:cursor-wait disabled:bg-indigo-300";
+		"rounded border-0 items-center text-white  hover:bg-indigo-600 focus:outline-none  disabled:color-neutral-400";
 
 	return (
 		<button

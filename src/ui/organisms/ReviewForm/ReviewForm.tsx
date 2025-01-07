@@ -27,13 +27,17 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 				ref={formRef}
 				action={action}
 				data-testid="add-review-form"
-				className="mt-2 flex-col gap-y-2"
+				className="mt-2 flex flex-col  gap-y-6"
 			>
-				<Input name="headline" isRequired />
-				<Input name="email" isRequired />
-				<Input name="name" isRequired />
-				<Input name="description" isRequired />
-
+				<Input name="headline" label="Title" isRequired register={undefined} />
+				<Input name="email" label="Email" isRequired register={undefined} />
+				<Input name="name" isRequired label="Name" register={undefined} />
+				<Input
+					name="description"
+					isRequired
+					label="Text"
+					register={undefined}
+				/>
 				<ARatingInput name="rating" label="Rating" initialStars={5} />
 				<button
 					type="submit"

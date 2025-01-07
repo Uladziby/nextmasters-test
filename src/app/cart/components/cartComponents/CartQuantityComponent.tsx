@@ -9,10 +9,12 @@ export const ItemCartQuantityComponent = ({
 	quantity,
 	itemId,
 	cartId,
+	isDisabled,
 }: {
 	quantity: number;
 	itemId: string;
 	cartId: string;
+	isDisabled: boolean;
 }) => {
 	const [optimisticQuntity, setOptimisticQuantity] = useOptimistic(quantity);
 
@@ -33,8 +35,9 @@ export const ItemCartQuantityComponent = ({
 				type="submit"
 				formAction={decrement}
 				dataTestId="decrement"
+				isDisabled={isDisabled}
 			>
-				<Minus color="black" size={18} />
+				<Minus color={isDisabled ? "grey" : "black"} size={18} />
 			</Button>
 			<span
 				className="items-center justify-center text-xl"
@@ -47,8 +50,9 @@ export const ItemCartQuantityComponent = ({
 				className="bg-white hover:bg-slate-100"
 				formAction={increment}
 				dataTestId="increment"
+				isDisabled={isDisabled}
 			>
-				<Plus color="black" size={18} />
+				<Plus color={isDisabled ? "grey" : "black"} size={18} />
 			</Button>
 		</form>
 	);

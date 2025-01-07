@@ -19,10 +19,10 @@ export const Input = ({
 }) => {
 	return (
 		<>
-			<label htmlFor={name}>
+			<label htmlFor={name} className="flex items-center justify-between gap-6">
 				{label && (
-					<span className="text-md text-secondary">
-						{capitalizeFirstLetter(label)}
+					<span className="text-sm text-secondary">
+						{capitalizeFirstLetter(label)}:
 					</span>
 				)}
 				<input
@@ -32,7 +32,7 @@ export const Input = ({
 					name={name}
 					placeholder={placeholder}
 					required={isRequired}
-					className="min-w-0 flex-auto rounded-md border-0 px-3.5 py-2 text-lg text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-neutral-600"
+					className="max-w-48 flex-auto rounded-md border-0 px-3.5 py-2 text-lg text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-neutral-600"
 				/>
 			</label>
 			{error && error.length > 0 && (

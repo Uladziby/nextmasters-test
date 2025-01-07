@@ -1,7 +1,6 @@
 query CartProductsById($cartId: ID!) {
 	cartProductsById(cartId: $cartId) {
 		name
-		id
 		description
 		collection
 		slug

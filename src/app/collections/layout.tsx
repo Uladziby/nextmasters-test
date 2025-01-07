@@ -1,13 +1,9 @@
 import { type ReactNode } from "react";
 
-export default function CategoryProductLayout({
+export default function CollectionsProductLayout({
 	children,
 }: {
 	children: ReactNode;
 }) {
-	return (
-		<section className="flex h-full w-full flex-1 flex-col gap-10 lg:px-8">
-			{children}
-		</section>
-	);
+	return <section className="flex flex-col gap-10 lg:px-8">{children}</section>;
 }

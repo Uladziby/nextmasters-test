@@ -11,9 +11,9 @@ export const ProductList = ({
 	const data_test_id = useGetTestIdBySortValue();
 
 	return (
-		<div className="flex justify-center">
+		<div className="container mx-auto justify-center px-4">
 			<ul
-				className="grid max-w-4xl gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+				className="grid max-w-4xl justify-center gap-4 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4"
 				data-testid="products-list"
 			>
 				{products.map((product) => {

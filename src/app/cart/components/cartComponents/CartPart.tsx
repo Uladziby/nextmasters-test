@@ -13,7 +13,6 @@ export type CartItemsType = {
 		images: { url: string }[];
 		name: string;
 		price: number;
-		id: string;
 	}[];
 	cartId: string;
 };
