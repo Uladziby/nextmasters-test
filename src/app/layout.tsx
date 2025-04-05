@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { Header } from "@/ui/organisms/Header/Header";
 import { Footer } from "@/ui/organisms/Footer/Footer";
+import { ABreadCrumbs } from "@/ui/atoms/ABreadCrumbs/ABreadCrumbs";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-gilroy" });
 
@@ -27,13 +28,21 @@ export default function RootLayout({
 					className={`${inter.variable} flex min-h-screen flex-col bg-white font-sans`}
 				>
 					<Header />
-					<main className="my-12 flex flex-1 flex-grow justify-center">
+					<ABreadCrumbs
+						homeElement={"Home"}
+						separator={<span> {">"} </span>}
+						activeClasses="text-secondary"
+						containerClasses="flex lg:px-8 py-4"
+						listClasses="mx-2 font-normal hover:text-slate-400"
+						capitalizeLinks
+					/>
+					<main className="flex flex-1 flex-grow flex-col justify-center py-4">
 						{children}
+						<Footer />
 					</main>
-					<Footer />
 					{modal}
-					<Analytics />
 				</body>
+				<Analytics />
 			</html>
 		</ClerkProvider>
 	);

@@ -100,7 +100,7 @@ export default async function SingleProductPage({
 								<div className="flex justify-between">
 									{rating && (
 										<div className="flex items-center justify-between gap-2 font-bold">
-											<span>{rating.toFixed(1)}/5</span>
+											<span>{rating.toFixed(1)}/5.0</span>
 											<RatingIndicator rating={rating} />
 										</div>
 									)}

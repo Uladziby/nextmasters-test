@@ -41,7 +41,7 @@ export default async function CollectionPage({
 	return (
 		<>
 			<SectionHeader subtitle={collection.name} />
-			<ul className="grid grid-cols-2  gap-x-4 px-10 py-6 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+			<ul className="grid gap-6 px-4 py-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
 				{data &&
 					data.map((product) => (
 						<ProductListItem key={product.id} product={product} />

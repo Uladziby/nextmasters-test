@@ -1,9 +1,16 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { ActiveLink } from "@/ui/atoms/ActiveLink/ActiveLink";
 import { navLinks } from "@/utils/constatnts";
 
-export async function NavBar() {
+export function NavBar() {
+	const pathname = usePathname()
+		.split("/")
+		.filter((path) => path.length > 0);
+
 	return (
-		<nav className="flex-1">
+		<nav className={`flex-1 ${pathname.length === 0 ? "flex" : "hidden"}`}>
 			<ul
 				data-testid="navigation"
 				className="md: flex h-full w-full justify-start px-4 sm:gap-2 md:gap-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-10"
