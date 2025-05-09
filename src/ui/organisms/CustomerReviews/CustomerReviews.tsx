@@ -1,5 +1,6 @@
 import { getProductReviewByIdGraphql } from "@/api/products";
 import { RatingIndicator } from "@/ui/organisms/CustomerReviews/RatingIndicator";
+import { COSTUMER_REVIEWS_HEADLINE } from "@/utils/constatnts";
 import { formatDate } from "@/utils/formatDate";
 
 export const CustomerReviews = async ({ productId }: { productId: string }) => {
@@ -7,17 +8,17 @@ export const CustomerReviews = async ({ productId }: { productId: string }) => {
 
 	return (
 		<div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
-			<h3>Recent reviews</h3>
+			<h3>{COSTUMER_REVIEWS_HEADLINE}</h3>
 			{reviews
 				.reverse()
 				.slice(0, 10)
-				.map(({ id, author, title, updatedAt, rating, description }) => {
+				.map(({ _id, author, title, updatedAt, rating, description }) => {
 					return (
-						<div className="my-12" key={id}>
+						<div className="my-12" key={_id}>
 							<h4 className="text-sm font-bold text-gray-900">{author}</h4>
 							<div className="mt-1 flex flex-row items-center justify-between gap-2">
 								<div className="flex gap-2">
-									<RatingIndicator rating={rating} />
+									{rating && <RatingIndicator rating={rating} />}
 									<span>{rating}/5</span>
 								</div>
 								<span className="text-sm text-gray-400">

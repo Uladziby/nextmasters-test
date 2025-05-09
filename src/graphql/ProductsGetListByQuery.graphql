@@ -2,10 +2,6 @@ query ProductsGetListByQuery($search: String) {
 	products(search: $search) {
 		data {
 			...ProductListItem
-			categories {
-				id
-				name
-			}
 		}
 		meta {
 			total

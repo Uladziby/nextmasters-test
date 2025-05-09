@@ -1,0 +1,8 @@
+query CartDataProductsForStripe($cartId: ID!) {
+	cartDataProductsForStripe(cartId: $cartId) {
+		name
+		price
+		productId
+		quantity
+	}
+}

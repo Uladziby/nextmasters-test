@@ -1,46 +1,37 @@
-import Link from "next/link";
 import { getCollections } from "@/api/collections";
+import { WrapperSection } from "@/ui/atoms/WrapperSection/WrapperSection";
+import { CollectionListItem } from "@/ui/organisms/OurCollections/CollectionListItem";
 
 export const OurCollections = async () => {
 	const collections = await getCollections();
 
 	return (
-		<ul className="container mx-auto flex shadow-lg">
-			<ul className="left flex w-1/2 flex-col">
-				<li className="flex min-h-96 flex-col flex-wrap items-center justify-end bg-new-arrival bg-cover bg-center bg-no-repeat py-12 hover:shadow-xl">
-					<Link
-						className="button_collection cursor-pointer "
-						href={`/collections/${collections[1]?.slug}`}
-					>
-						<span className="text-sm">{collections[1]?.name}</span>
-					</Link>
-					{/* <p className="text-center text-slate-500">
-						{collections[1]?.description}
-					</p> */}
-				</li>
-				<li className="flex min-h-96 flex-col flex-wrap items-center justify-end bg-summer-vibes bg-cover bg-center bg-no-repeat py-12  hover:shadow-xl">
-					<Link
-						className="button_collection cursor-pointer"
-						href={`/collections/${collections[0]?.slug}`}
-					>
-						<span className="text-sm">{collections[0]?.name}</span>
-					</Link>
-					{/* <p className="text-center text-slate-500">
-						{collections[0]?.description}
-					</p> */}
-				</li>
-			</ul>
-			<li className="flex min-h-96 w-1/2 flex-col flex-wrap items-center justify-end bg-elegant-extras bg-cover bg-center bg-no-repeat py-12 hover:shadow-xl">
-				<Link
-					className="button_collection cursor-pointer"
-					href={`/collections/${collections[2]?.slug}`}
-				>
-					<span className="text-sm">{collections[2]?.name}</span>
-				</Link>
-				{/* <p className="text-center text-slate-500">
-					{collections[2]?.description}
-				</p> */}
-			</li>
-		</ul>
+		<WrapperSection>
+			<div className="grid items-center gap-4 rounded sm:grid-cols-1 lg:grid-cols-[70%_30%] ">
+				<ul className="grid w-full grid-cols-1 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 xl:grid-cols-2">
+					<li className="our-collections-item group rounded-tl-lg">
+						<CollectionListItem
+							data={collections[5]!}
+							className="collection-common-styles"
+						/>
+					</li>
+					<li className="our-collections-item group col-start-1 row-start-2 justify-center rounded-bl-lg ">
+						<CollectionListItem
+							data={collections[4]!}
+							className=" collection-common-styles"
+						/>
+					</li>
+					<li className="our-collections-item group md:col-start-1 md:row-start-3 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+						<CollectionListItem
+							data={collections[3]!}
+							className="collection-common-styles"
+						/>
+					</li>
+				</ul>
+				<div className=" break-keep py-12 text-4xl font-heavy text-secondary sm:text-center md:text-4xl lg:py-0 lg:text-start lg:text-4xl xl:text-6xl">
+					Discover our collections.
+				</div>
+			</div>
+		</WrapperSection>
 	);
 };

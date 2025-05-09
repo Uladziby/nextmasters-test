@@ -1,0 +1,10 @@
+query CollectionProductsBySlug($slug: String!) {
+	collectionProducts(slug: $slug) {
+		data {
+			...ProductListItem
+		}
+		meta {
+			total
+		}
+	}
+}

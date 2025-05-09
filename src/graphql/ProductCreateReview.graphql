@@ -6,14 +6,12 @@ mutation ProductCreateReview(
 	$rating: Int!
 	$title: String!
 ) {
-	reviewCreate(
+	createReview(
 		author: $author
 		description: $description
 		email: $email
 		productId: $productId
 		rating: $rating
 		title: $title
-	) {
-		id
-	}
+	)
 }

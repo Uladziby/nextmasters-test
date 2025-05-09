@@ -8,12 +8,14 @@ export default authMiddleware({
 		"/(.)cart/sidebar",
 		"/(.)cart/sidebar",
 		"/cart/sidebar",
+		"/cart/success",
 		"/categories",
 		"/categories/(.*)",
 		"/collections/(.*)",
 		"/collections",
 		"/product/(.*)",
 		"/products/(.*)",
+		"/api/send",
 	],
 });
 

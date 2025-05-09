@@ -1,9 +1,11 @@
+"use client";
+
 import { type ReactNode } from "react";
 
-export default function CategoryProductLayout({
+export default function CollectionsProductLayout({
 	children,
 }: {
 	children: ReactNode;
 }) {
-	return <div className="m-6 ">{children}</div>;
+	return <section className="flex flex-col gap-10 lg:px-8">{children}</section>;
 }

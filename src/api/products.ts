@@ -8,7 +8,9 @@ import {
 	type SortDirection,
 	type ProductSortBy,
 	ProductsGetListDocument,
+	ProductCreateDocument,
 } from "@/gql/graphql";
+import { type NewProductFormSchema } from "@/ui/organisms/CreateProductForm/formSchema";
 import { type ReviewFormSchema } from "@/ui/organisms/ReviewForm/formSchema";
 import { type ProductItemType, type ProductResponseItem } from "@/ui/types";
 import { URL_BASE } from "@/utils/constatnts";
@@ -46,9 +48,8 @@ export const getProductReviewByIdGraphql = async (
 		next: { tags: ["product"] },
 	});
 
-	const product = response.product!;
-
-	return product.reviews;
+	const reviews = response.reviews;
+	return reviews;
 };
 
 export const createProductReviewGraphql = async (
@@ -62,44 +63,57 @@ export const createProductReviewGraphql = async (
 			...data,
 			title: data.headline,
 			description: data.content,
-			author: data.name
+			author: data.name,
 		},
 		next: { tags: ["product"] },
 	});
 
-	return response.reviewCreate.id;
+	return response;
+};
+
+export const createNewProduct = async (
+	data: NewProductFormSchema,
+	collectionSlug: string,
+) => {
+	const newProduct = { ...data, collection: collectionSlug };
+	console.log(newProduct);
+	const response = await executeGraphql({
+		query: ProductCreateDocument,
+		variables: newProduct,
+		next: { tags: ["createNewProduct"] },
+	});
+	
+	return response;
 };
 
 export const getProducts = async (numberItems: number, _skip: number) => {
-	const graphqlResponse = await executeGraphql({
+	const { products } = await executeGraphql({
 		query: ProductsGetListDocument,
 		variables: {
 			take: numberItems,
 			skip: _skip,
 		},
 	});
-
-	return graphqlResponse.products.data;
+	return products.data;
 };
 
 export const getProductsByOrder = async (
 	numberItems: number,
 	_skip: number,
-	sortValue: string,
+	sortValue: string = "DEFAULT_ASC",
 ) => {
-	const orderByValue = sortValue ? sortValue.split("_")[0] : "DEFAULT";
-	const orderValue = sortValue ? sortValue.split("_")[1] : "ASC";
+	const orderByValue = sortValue.split("_")[0] as ProductSortBy;
+	const orderValue = sortValue.split("_")[1] as SortDirection;
 
 	const graphqlResponse = await executeGraphql({
 		query: ProductsSortByOrderDocument,
 		variables: {
 			take: numberItems,
 			skip: _skip,
-			order: orderValue as SortDirection,
-			orderBy: orderByValue as ProductSortBy,
+			order: orderValue,
+			orderBy: orderByValue,
 		},
 	});
-
 	return graphqlResponse.products;
 };
 

@@ -15,8 +15,8 @@ export const ARatingInput = ({
 	const [totalStars] = useState<number>(initialStars);
 
 	return (
-		<label className="my-4 flex flex-col">
-			<span className="text-xs">{label}</span>
+		<label className="my-4 flex flex-row gap-10">
+			<span className="text-sm text-secondary">{label}</span>
 			<div className="flex">
 				{Array.from({ length: totalStars }).map((_, index) => {
 					const currentRating = index + 1;

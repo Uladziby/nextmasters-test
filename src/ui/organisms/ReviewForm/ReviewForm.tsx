@@ -8,6 +8,7 @@ import {
 	reviewFormSchema,
 	type ReviewFormSchema,
 } from "@/ui/organisms/ReviewForm/formSchema";
+import { Input } from "@/ui/atoms/Input/Input";
 
 export const ReviewForm = ({ productId }: { productId: string }) => {
 	const formRef = useRef<HTMLFormElement | null>(null);
@@ -26,45 +27,18 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
 				ref={formRef}
 				action={action}
 				data-testid="add-review-form"
-				className="mt-2 flex-col gap-y-2"
+				className="mt-2 flex flex-col  gap-y-6"
 			>
-				<label htmlFor="title">
-					<span className="text-xs">Title</span>
-					<input
-						type="text"
-						name="headline"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<label htmlFor="email">
-					<span className="text-xs">Email</span>
-					<input
-						type="text"
-						name="email"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<label htmlFor="author">
-					<span className="text-xs">Name</span>
-					<input
-						type="text"
-						name="name"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<label htmlFor="description">
-					<span className="text-xs">Description</span>
-					<textarea
-						rows={5}
-						name="content"
-						required
-						className="mt-1 block w-full rounded-md border-gray-300 text-xs shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					/>
-				</label>
-				<ARatingInput name="rating" label="rating" initialStars={5} />
+				<Input name="headline" label="Title" isRequired register={undefined} />
+				<Input name="email" label="Email" isRequired register={undefined} />
+				<Input name="name" isRequired label="Name" register={undefined} />
+				<Input
+					name="description"
+					isRequired
+					label="Text"
+					register={undefined}
+				/>
+				<ARatingInput name="rating" label="Rating" initialStars={5} />
 				<button
 					type="submit"
 					className="rounded-md bg-indigo-600 px-4 py-2 text-white"

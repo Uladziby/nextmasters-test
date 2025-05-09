@@ -1,14 +1,21 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export function Overlay() {
+export const Overlay = () => {
 	const router = useRouter();
 
+	useEffect(() => {
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				router.back();
+			}
+		};
+		document.addEventListener("keydown", onKeyDown);
+		return () => document.removeEventListener("keydown", onKeyDown);
+	}, [router]);
+
 	return (
-		<div
-			onClick={() => router.back()}
-			className={`absolute inset-0 z-30 bg-slate-800 bg-opacity-75`}
-			style={{ height: `${document.body.clientHeight}px` }}
-		/>
+		<div className="fixed inset-0 bg-black/80" onClick={() => router.back()} />
 	);
-}
+};

@@ -39,12 +39,20 @@ const nextConfig = {
 		];
 	},
 	images: {
-		domains: ["static-ourstore.hyperfunctor.com", "source.unsplash.com"],
+		domains: [
+			"static-ourstore.hyperfunctor.com",
+			"source.unsplash.com",
+			"julia-store-images.s3.eu-west-1.amazonaws.com",
+		],
 		formats: ["image/webp"],
 		remotePatterns: [],
 	},
 	transpilePackages: ["lucide-react"],
 	output: "standalone",
+	reactStrictMode: true,
+	env: {
+		BASE_URL: process.env.NEXT_PUBLIC_KEY_EMAILJS,
+	},
 };
 
 //const withMDX = require("@next/mdx")();

@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import { type TypeOf, type ZodType } from "zod";
 
-type FormReview<
+export type FormReview<
 	TData = unknown,
 	TErrors extends Partial<Record<keyof TData, string[]>> = Partial<
 		Record<keyof TData, string[]>
@@ -25,13 +25,14 @@ export const useTypeSafeFormState = <FormSchema extends ZodType>(
 			_prevState: unknown,
 			formData: FormData,
 		): Promise<FormReview<TypeOf<FormSchema>>> => {
-			//todo refactor this
+			//TODO refactor this
 			const updatedData = {
 				...Object.fromEntries(formData.entries()),
 				rating: parseInt(formData.get("rating") as string, 10),
 			};
 
 			const data = await schema.safeParseAsync(updatedData);
+
 			if (!data.success) {
 				return {
 					success: false as const,
@@ -47,6 +48,7 @@ export const useTypeSafeFormState = <FormSchema extends ZodType>(
 				response: data.data as unknown,
 			};
 			await action(data.data as unknown);
+
 			return newState;
 		},
 		null,

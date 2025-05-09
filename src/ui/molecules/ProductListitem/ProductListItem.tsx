@@ -9,22 +9,25 @@ export const ProductListItem = ({
 	product: ProductListItemFragment;
 }) => {
 	return (
-		<Link href={`/product/${product.id}`}>
-			<article className=" cursor-pointer">
+		<Link
+			href={`/product/${product.id}`}
+			className="group block transition-transform duration-200 hover:scale-[1.02]"
+		>
+			<article className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
 				{product.images[0] && (
-					<>
-						<div className="overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-square">
-							<NextImage
-								src={product.images[0]?.url}
-								alt={product.images[0]?.alt}
-								width={150}
-								height={150}
-								className="h-full w-full object-cover object-center  transition-all duration-300 ease-in-out hover:scale-105"
-							/>
-						</div>
-						<AProductDescription product={product} />
-					</>
+					<div className="relative aspect-[4/5] w-full">
+						<NextImage
+							src={product.images[0].url}
+							alt={product.name}
+							fill
+							className="object-cover"
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+						/>
+					</div>
 				)}
+				<div className="p-4">
+					<AProductDescription product={product} />
+				</div>
 			</article>
 		</Link>
 	);

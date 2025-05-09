@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./custom-base-styles.css";
+@import "./custom-components.css";
 
 @layer components {
 	.spinny-thing {
@@ -59,42 +61,27 @@
 			color 100ms ease,
 			opacity 300ms ease;
 		-webkit-appearance: none;
+		appearance: none; /* Add the appearance property */
 		border: none;
 		padding: 0 1rem 0 1rem;
 		font-size: 1rem;
 		color: transparent;
 	}
+
 	.button_collection {
-		position: relative;
-		border: 1px solid black;
-		border-radius: 50px;
-		color: black;
-		background-color: transparent;
-		text-align: center;
-		padding: 10px 25px;
-		min-width: 180px;
-		text-align: center;
-		font-size: 12px;
-
-		&:hover {
-			box-shadow:
-				0 10px 15px -3px rgb(0 0 0 / 0.1),
-				0 4px 6px -4px rgb(0 0 0 / 0.1);
-		}
-
-		&:hover::after {
-			opacity: 0.5;
-		}
-		&::after {
-			content: "";
-			display: block;
-			position: absolute;
-			background: transparent;
-			inset: 5px;
-			border-radius: 45px;
-			z-index: 1;
-			transition: opacity 0.3s ease;
-		}
+		@apply hover:text-secondary hover:border-secondary  min-w-40  rounded-xl border border-solid border-[white] px-5 py-3 pb-4 text-center text-white hover:shadow-lg;
+	}
+	.button_collection::after {
+		@apply absolute inset-1 z-10 block rounded-3xl bg-transparent ease-in after:content-[''];
+	}
+	.title-h2 {
+		@apply border-b-2 pb-4 text-center font-gilroy text-4xl font-semibold  text-slate-600;
+	}
+	.our-collections-item {
+		@apply relative mx-auto h-full w-full overflow-hidden;
+	}
+	.collection-common-styles {
+		@apply relative z-0 h-auto w-full transition-all duration-500;
 	}
 }
 
@@ -104,6 +91,20 @@
 	--background-end-rgb: 0, 0, 0;
 	--spinny: 5rem;
 	--activeclr: #e4ecfa;
+	--elevation-card-rest: 0px 0px 0px 1px rgba(3, 7, 18, 0.08),
+		0px 1px 2px -1px rgba(3, 7, 18, 0.08), 0px 2px 4px 0px rgba(3, 7, 18, 0.04);
+	--tw-shadoww: 0px 0px 0px 1px rgba(3, 7, 18, 0.08),
+		0px 1px 2px -1px rgba(3, 7, 18, 0.08), 0px 2px 4px 0px rgba(3, 7, 18, 0.04);
+	--tw-shadow-colored: var(--elevation-card-rest);
+	--elevation-card-hover: 0px 0px 0px 1px rgba(3, 7, 18, 0.08),
+		0px 1px 2px -1px rgba(3, 7, 18, 0.08), 0px 2px 8px 0px rgba(3, 7, 18, 0.1);
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: "Gilroy", sans-serif;
 }
 
 @media (prefers-color-scheme: light) {

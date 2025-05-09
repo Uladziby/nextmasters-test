@@ -3,10 +3,11 @@ import { ProductList } from "@/ui/organisms/ProductList/ProductList";
 import { NUMBER_SUGGESTED_ITEMS } from "@/utils/constatnts";
 
 export const SuggestedProductList = async () => {
-	const products = await getProducts(NUMBER_SUGGESTED_ITEMS, 1);
+	const products = await getProducts(NUMBER_SUGGESTED_ITEMS, 0);
+
 	return (
 		<div data-testid="related-products">
-			<ProductList products={products.slice(-4)} />
+			<ProductList products={products.slice(-1)} />
 		</div>
 	);
 };
